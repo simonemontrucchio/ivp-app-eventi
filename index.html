@@ -2,23 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Versioning appended to bust cache for HTML -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Barolo & Friends</title>
-    <link rel="manifest" href="manifest.json?v=4.1">
-    <meta name="theme-color" content="#7A1731">
+    <link rel="manifest" href="manifest.json?v=4.2">
+    <meta name="theme-color" content="#FAF9F6">
     <link rel="apple-touch-icon" href="assets/icon-192.png">
+    <link rel="stylesheet" href="style.css?v=4.2">
     
-    <!-- Cache busting for CSS -->
-    <link rel="stylesheet" href="style.css?v=4.1">
-    
-    <!-- SVGs definition block -->
     <svg style="display:none;">
         <symbol id="icon-search" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></symbol>
         <symbol id="icon-glass" viewBox="0 0 24 24"><path d="M12 22a1 1 0 0 1-1-1v-5.11C6.67 15.35 3 11.83 3 7.5A1.5 1.5 0 0 1 4.5 6h15A1.5 1.5 0 0 1 21 7.5c0 4.33-3.67 7.85-8 8.39V21a1 1 0 0 1-1 1zM5.1 8c.37 2.87 2.76 5.14 5.9 5.43V14c0 3.86-3.14 7-7 7H3a1 1 0 0 1 0-2h1c2.76 0 5-2.24 5-5v-.57A6.97 6.97 0 0 1 5.1 8zM12 14c3.31 0 6-2.69 6-6H6c0 3.31 2.69 6 6 6z" fill-rule="evenodd" clip-rule="evenodd"/></symbol>
         <symbol id="icon-leaf" viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.5a1 1 0 0 1-1.86-.73C4.1 15 6 9.5 13.5 6.64 12 5.5 10 5 8 5a1 1 0 0 1 0-2c3.27 0 6 1.48 8.1 3.58a1 1 0 0 1 .9 1.42z"/></symbol>
         <symbol id="icon-handshake" viewBox="0 0 24 24"><path d="M11 11h2v2h-2zm-3-3h2v2H8zm6 0h2v2h-2zm-9 6h2v2H5zm12 0h2v2h-2z" fill-rule="evenodd" clip-rule="evenodd"/></symbol>
         <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></symbol>
+        <symbol id="icon-heart-filled" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/></symbol>
         <symbol id="icon-map" viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></symbol>
         <symbol id="icon-calendar" viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></symbol>
         <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></symbol>
@@ -26,110 +23,83 @@
         <symbol id="icon-install" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></symbol>
         <symbol id="icon-users" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></symbol>
         <symbol id="icon-list" viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></symbol>
-        <symbol id="icon-info" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></symbol>
+        <symbol id="icon-info" viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></symbol>
+        <symbol id="icon-close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></symbol>
     </svg>
-    
-    <div id="error-log" style="display:none; background: red; color: white; padding: 20px; font-family: monospace;"></div>
-    <script>
-        window.onerror = function(msg, url, lineNo, columnNo, error) {
-            var log = document.getElementById('error-log');
-            log.style.display = 'block';
-            log.innerHTML += 'Error: ' + msg + '<br>Line: ' + lineNo;
-            return false;
-        };
-    </script>
 
-    <!-- PWA Install Banner -->
-    <div id="pwa-banner" class="pwa-banner" style="display: none;">
-        <div class="pwa-content">
-            <svg class="pwa-icon"><use href="#icon-install"></use></svg>
-            <div>
-                <strong>Install App</strong>
-                <p>Add Barolo & Friends to your home screen</p>
+    <!-- Top Navigation (Desktop & General Header) -->
+    <header class="app-header">
+        <div class="header-inner">
+            <div class="header-titles">
+                <h1 id="event-title">Barolo & Friends</h1>
+                <div class="subtitle" id="event-date-city">Oslo, August 31st 2026</div>
             </div>
-        </div>
-        <button id="pwa-install-btn" class="btn-gold small">Install</button>
-    </div>
-
-    <!-- Hero Header -->
-    <header class="app-hero" id="app-hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-top">
-                <div>
-                    <h1 id="event-title">Barolo & Friends</h1>
-                    <div class="subtitle" id="event-date-city">Oslo, August 31st 2026</div>
-                </div>
-                <button id="btn-info" class="icon-btn-circle" aria-label="Information">
-                    <svg><use href="#icon-info"></use></svg>
-                </button>
-            </div>
-            <div class="hero-bottom">
-                <p id="welcome-message">Welcome</p>
-                <p class="slogan" id="event-slogan">Piedmont: where wine is history.</p>
-            </div>
+            <button id="btn-info" class="btn-outline-gold">
+                <svg class="btn-icon"><use href="#icon-info"></use></svg> Event Info
+            </button>
         </div>
     </header>
 
-    <!-- PRODUCERS SECTION -->
-    <section id="section-producers" class="page-section active">
-        <div class="filters-wrap">
-            <div class="search-input-wrap">
-                <svg class="search-icon"><use href="#icon-search"></use></svg>
-                <input type="text" id="search-input" placeholder="Search producer, wine, region...">
+    <!-- Content Sections -->
+    <div class="main-content">
+        <!-- PRODUCERS SECTION -->
+        <section id="section-producers" class="page-section active">
+            <div class="filters-wrap">
+                <div class="search-input-wrap">
+                    <svg class="search-icon"><use href="#icon-search"></use></svg>
+                    <input type="text" id="search-input" placeholder="Search producer, wine, region...">
+                </div>
+                <div class="quick-filters">
+                    <button id="filter-barolo" class="filter-btn">
+                        <svg class="filter-icon"><use href="#icon-glass"></use></svg> Only Barolo
+                    </button>
+                    <button id="filter-bio" class="filter-btn">
+                        <svg class="filter-icon"><use href="#icon-leaf"></use></svg> Organic / Bio
+                    </button>
+                    <button id="filter-seeking" class="filter-btn">
+                        <svg class="filter-icon"><use href="#icon-handshake"></use></svg> Seeking Importer
+                    </button>
+                </div>
             </div>
-            <div class="quick-filters">
-                <button id="filter-barolo" class="filter-btn">
-                    <svg class="filter-icon"><use href="#icon-glass"></use></svg> Only Barolo
-                </button>
-                <button id="filter-bio" class="filter-btn">
-                    <svg class="filter-icon"><use href="#icon-leaf"></use></svg> Organic / Bio
-                </button>
-                <button id="filter-seeking" class="filter-btn">
-                    <svg class="filter-icon"><use href="#icon-handshake"></use></svg> Seeking Importer
-                </button>
+            <main id="producer-list" class="producer-grid"></main>
+        </section>
+
+        <!-- MASTERCLASSES SECTION -->
+        <section id="section-masterclasses" class="page-section" style="display:none;">
+            <div class="section-header">
+                <h2>Masterclasses</h2>
+                <p>Explore the exclusive tastings and save wines.</p>
             </div>
-        </div>
-        <main id="producer-list" class="producer-grid"></main>
-    </section>
+            <div id="masterclass-list" class="mc-container"></div>
+        </section>
 
-    <!-- MASTERCLASSES SECTION -->
-    <section id="section-masterclasses" class="page-section" style="display:none;">
-        <div class="section-header">
-            <h2>Masterclasses</h2>
-            <p>Save wines directly to your notebook during the tasting.</p>
-            <div class="accent-line"></div>
-        </div>
-        <div id="masterclass-list" class="mc-container"></div>
-    </section>
+        <!-- NOTEBOOK SECTION -->
+        <section id="section-notebook" class="page-section" style="display:none;">
+            <div class="section-header">
+                <h2>My Tasting Notes</h2>
+                <p>Wines you have saved will appear here.</p>
+            </div>
+            <div id="notebook-list" class="wines-list"></div>
+            <button id="export-notes" class="btn-primary" style="margin-top:24px; width: 100%;">
+                <svg class="btn-icon"><use href="#icon-mail"></use></svg> Email my notes
+            </button>
+        </section>
+    </div>
 
-    <!-- NOTEBOOK SECTION -->
-    <section id="section-notebook" class="page-section" style="display:none;">
-        <div class="section-header">
-            <h2>My Tasting Notes</h2>
-            <p>Wines you have hearted will appear here.</p>
-            <div class="accent-line"></div>
-        </div>
-        <div id="notebook-list" class="wines-list"></div>
-        <button id="export-notes" class="btn-primary" style="margin-top:25px; width: 100%;">
-            <svg class="btn-icon"><use href="#icon-mail"></use></svg> Email my notes
-        </button>
-    </section>
-
-    <!-- BOTTOM NAVIGATION (MOBILE THUMB ZONE) -->
+    <!-- BOTTOM NAVIGATION (MOBILE) -->
     <nav class="bottom-nav">
-        <button class="nav-item active" data-target="section-producers" id="nav-producers">
+        <button class="nav-item active" data-target="section-producers">
             <svg class="nav-icon"><use href="#icon-users"></use></svg>
             <span>Producers</span>
         </button>
-        <button class="nav-item" data-target="section-masterclasses" id="nav-masterclasses">
+        <button class="nav-item" data-target="section-masterclasses">
             <svg class="nav-icon"><use href="#icon-list"></use></svg>
             <span>Masterclasses</span>
         </button>
-        <button class="nav-item" data-target="section-notebook" id="nav-notebook">
+        <button class="nav-item" data-target="section-notebook">
             <div class="nav-icon-wrap">
                 <svg class="nav-icon"><use href="#icon-heart"></use></svg>
-                <span class="badge" id="count-notebook">0</span>
+                <span class="badge" id="count-notebook" style="display:none;">0</span>
             </div>
             <span>Notebook</span>
         </button>
@@ -142,15 +112,14 @@
         <div class="bottom-sheet" id="sheet-producer">
             <div class="sheet-header">
                 <h2 id="mp-name" class="sheet-title">Producer Name</h2>
-                <button class="close-btn" data-close="overlay-producer">&times;</button>
+                <button class="close-btn" data-close="overlay-producer"><svg><use href="#icon-close"></use></svg></button>
             </div>
             <div class="sheet-body">
                 <div class="detail-top">
-                    <img id="mp-logo" src="" alt="Logo" class="mp-logo">
                     <div class="mp-info-right">
                         <div class="mp-table">Table <strong id="mp-desk">0</strong></div>
                         <div class="mp-region" id="mp-region">Region, City</div>
-                        <div class="status-badge" id="mp-status-badge">
+                        <div class="status-badge" id="mp-status-badge" style="margin-top: 6px;">
                             <span class="dot"></span> <span id="mp-market-status">Status</span>
                         </div>
                     </div>
@@ -163,14 +132,12 @@
                         <span>At the desk you will meet:</span>
                         <strong id="mp-contact">Name, Role</strong>
                     </div>
-                    <a id="mp-email" href="#" class="btn-gold outline">
+                    <a id="mp-email" href="#" class="btn-outline-gold">
                         <svg class="btn-icon"><use href="#icon-mail"></use></svg> Contact
                     </a>
                 </div>
 
-                <div class="section-divider">
-                    <span>WINES FOR TASTING</span>
-                </div>
+                <h3 class="wines-header">Wines for tasting</h3>
                 <div id="mp-wines" class="wines-list"></div>
             </div>
         </div>
@@ -180,24 +147,28 @@
     <div class="modal-overlay" id="overlay-info">
         <div class="bottom-sheet" id="sheet-info">
             <div class="sheet-header">
-                <h2 class="sheet-title">Event Info</h2>
-                <button class="close-btn" data-close="overlay-info">&times;</button>
+                <h2 class="sheet-title">Event Information</h2>
+                <button class="close-btn" data-close="overlay-info"><svg><use href="#icon-close"></use></svg></button>
             </div>
             <div class="sheet-body">
                 <div class="info-card">
                     <h3 id="info-title">Barolo & Friends</h3>
                     <p><strong>Date:</strong> August 31st, 2026</p>
                     <p><strong>Venue:</strong> Gamle Logen, Oslo</p>
+                    <p style="margin-top:10px; font-size:13px; color:var(--text-muted);">
+                        13:00–16:00: Walk-Around Tasting (Trade)<br>
+                        16:45–20:00: Walk-Around Tasting (Wine lovers)
+                    </p>
                 </div>
                 
                 <div class="info-actions">
-                    <button class="btn-action" onclick="alert('Floor plan map opens here')">
+                    <button class="btn-action" id="btn-open-map">
                         <svg class="btn-icon"><use href="#icon-map"></use></svg> View Floor Plan
                     </button>
-                    <button class="btn-action" onclick="alert('Opening Maps...')">
-                        <svg class="btn-icon"><use href="#icon-pin"></use></svg> Open in Maps
-                    </button>
-                    <button class="btn-action" onclick="alert('Added to calendar!')">
+                    <a class="btn-action" href="https://maps.google.com/?q=Gamle+Logen,+Oslo" target="_blank">
+                        <svg class="btn-icon"><use href="#icon-pin"></use></svg> Open in Google Maps
+                    </a>
+                    <button class="btn-action" id="btn-calendar">
                         <svg class="btn-icon"><use href="#icon-calendar"></use></svg> Add to Calendar
                     </button>
                 </div>
@@ -205,17 +176,25 @@
         </div>
     </div>
 
-    <!-- Cache busting for JS -->
-    <script src="data.js?v=4.1"></script>
-    <script src="app.js?v=4.1"></script>
+    <!-- Map Modal -->
+    <div class="modal-overlay" id="overlay-map">
+        <div class="bottom-sheet" style="max-height: 95vh;">
+            <div class="sheet-header">
+                <h2 class="sheet-title">Floor Plan</h2>
+                <button class="close-btn" data-close="overlay-map"><svg><use href="#icon-close"></use></svg></button>
+            </div>
+            <div class="sheet-body" style="text-align:center;">
+                <img src="assets/floorplan.jpg" style="width:100%; height:auto; border-radius:4px; border:1px solid #eaeaea;">
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js?v=4.2"></script>
+    <script src="app.js?v=4.2"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js?v=4.1').then(registration => {
-                    console.log('SW registered: ', registration);
-                }).catch(registrationError => {
-                    console.log('SW registration failed: ', registrationError);
-                });
+                navigator.serviceWorker.register('./sw.js?v=4.2').catch(e => console.log(e));
             });
         }
     </script>
