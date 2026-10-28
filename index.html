@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Barolo & Friends</title>
-    <link rel="manifest" href="manifest.json?v=5.0">
+    <link rel="manifest" href="manifest.json?v=4.6">
     <meta name="theme-color" content="#FDFBF7">
     <link rel="apple-touch-icon" href="assets/icon-192.png">
     
-    <!-- CSS version 5.0 for Cache Busting -->
-    <link rel="stylesheet" href="style.css?v=5.0">
+    <link rel="stylesheet" href="style.css?v=4.6">
     
     <svg style="display:none;">
         <symbol id="icon-search" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></symbol>
@@ -27,115 +26,133 @@
         <symbol id="icon-list" viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></symbol>
         <symbol id="icon-info" viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></symbol>
         <symbol id="icon-close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></symbol>
+        <symbol id="icon-grape" viewBox="0 0 24 24"><path d="M12 2C7.58 2 4 5.58 4 10c0 3.1 1.76 5.76 4.31 7.15C9.28 19.34 10.58 21 12 21s2.72-1.66 3.69-3.85C18.24 15.76 20 13.1 20 10c0-4.42-3.58-8-8-8zm-1 11.5c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm4-3c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></symbol>
+        <symbol id="icon-globe" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></symbol>
+        <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></symbol>
+        <symbol id="icon-bed" viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></symbol>
+        <symbol id="icon-restaurant" viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></symbol>
+        <symbol id="icon-pool" viewBox="0 0 24 24"><path d="M22 21H2v-2h20v2zm-2.03-3H4.03c1.37-1.16 2.37-2.7 2.76-4.4.15-.65.22-1.31.21-1.95 0-.08.01-.16.02-.23.1-1.63 1.45-2.92 3.1-2.92 1.66 0 3.01 1.31 3.1 2.94.01.07.02.14.02.22-.01.64.06 1.3.21 1.95.39 1.7 1.39 3.24 2.76 4.39zM8.13 10.37c-.77.16-1.39.73-1.64 1.48-.12.38-.17.77-.16 1.16-.01.76-.23 1.5-.64 2.13.98-1 1.62-2.3 1.79-3.7.13-.19.32-.34.54-.42.23-.08.47-.07.7-.01.02-.01.04-.02.05-.03-.21-.19-.44-.39-.64-.61zm7.74 0c-.21.22-.44.42-.64.61.02.01.03.02.05.03.22-.06.46-.07.7-.01.22.07.41.22.54.42.17 1.4.81 2.7 1.79 3.7-.41-.63-.63-1.37-.64-2.13.01-.39-.04-.78-.16-1.16-.25-.75-.87-1.32-1.64-1.48zM12 4.5c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5zm0 3c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5z"/></symbol>
+        <symbol id="icon-vineyard" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></symbol>
+        <symbol id="icon-arrow-up" viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></symbol>
     </svg>
 
-    <!-- Error Log for debugging -->
-    <div id="error-log" style="display:none; background: red; color: white; padding: 20px; font-family: monospace;"></div>
-    <script>
-        window.onerror = function(msg, url, lineNo) {
-            var log = document.getElementById('error-log');
-            log.style.display = 'block';
-            log.innerHTML += 'Error: ' + msg + '<br>Line: ' + lineNo;
-            return false;
-        };
-    </script>
-
-    <!-- PWA Install Banner -->
-    <div id="pwa-banner" class="pwa-banner" style="display: none;">
+    <!-- Top Toast for PWA -->
+    <div id="pwa-banner" class="pwa-toast" style="display:none;">
         <div class="pwa-content">
             <svg class="pwa-icon"><use href="#icon-install"></use></svg>
             <div>
                 <strong>Install App</strong>
-                <p>Add Barolo & Friends to your home screen</p>
+                <p>Add to your home screen</p>
             </div>
         </div>
-        <button id="pwa-install-btn" class="btn-gold small">Install</button>
+        <div style="display:flex; gap:8px;">
+            <button id="pwa-install-btn" class="btn-gold small">Install</button>
+            <button id="pwa-close-btn" class="btn-close-toast"><svg><use href="#icon-close"></use></svg></button>
+        </div>
     </div>
 
-    <!-- Desktop Navigation Menu (Visible only on >=768px) -->
+    <!-- Top Navigation Desktop -->
     <nav class="top-nav-desktop">
         <div class="top-nav-inner">
             <div class="top-nav-brand">
-                <span style="font-family:'Playfair Display', serif; font-size:18px; font-weight:700; color:var(--brand);">B&F</span>
+                <h1 style="font-family:var(--font-heading); font-size:22px; font-weight:700; color:var(--brand); margin:0;">B&F</h1>
             </div>
             <div class="top-nav-links">
                 <button class="nav-item-desktop active" data-target="section-producers">Producers</button>
                 <button class="nav-item-desktop" data-target="section-masterclasses">Masterclasses</button>
                 <button class="nav-item-desktop" data-target="section-notebook">Notebook <span class="badge" id="count-notebook-desktop" style="display:none;">0</span></button>
             </div>
-            <button id="btn-info-desktop" class="btn-outline-gold">
-                <svg class="btn-icon"><use href="#icon-info"></use></svg> Event Info
-            </button>
+            <button id="btn-info-desktop" class="btn-outline-gold">Event Info</button>
         </div>
     </nav>
 
-    <!-- Hero Header -->
-    <header class="app-hero" id="app-hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-top">
+    <!-- Content Sections -->
+    <div class="main-content">
+        
+        <!-- Cover Image Top -->
+        <div class="main-cover" style="background-image: url('assets/cover.jpg')"></div>
+
+        <!-- Main Event Header -->
+        <header class="page-header-title">
+            <div style="display:flex; justify-content:space-between; align-items:flex-end;">
                 <div>
                     <h1 id="event-title">Barolo & Friends</h1>
                     <div class="subtitle" id="event-date-city">Oslo, August 31st 2026</div>
                 </div>
-                <button id="btn-info" class="icon-btn-circle mobile-only-info" aria-label="Information">
-                    <svg><use href="#icon-info"></use></svg>
-                </button>
+                <button id="btn-info-mobile" class="btn-outline-gold small mobile-only">Event Info</button>
             </div>
-            <div class="hero-bottom">
-                <p id="welcome-message">Welcome</p>
-                <p class="slogan" id="event-slogan">Piedmont: where wine is history.</p>
-            </div>
-        </div>
-    </header>
+            <div class="counter-text" id="main-counter">24 producers &bull; 132 wines</div>
+        </header>
 
-    <!-- Content Sections -->
-    <div class="main-content">
         <!-- PRODUCERS SECTION -->
         <section id="section-producers" class="page-section active">
             <div class="filters-wrap">
                 <div class="search-input-wrap">
                     <svg class="search-icon"><use href="#icon-search"></use></svg>
-                    <input type="text" id="search-input" placeholder="Search producer, wine, region...">
+                    <input type="text" id="search-input" placeholder="Search wine, producer, city, table...">
                 </div>
-                <div class="quick-filters">
-                    <button id="filter-barolo" class="filter-btn">
-                        <svg class="filter-icon"><use href="#icon-glass"></use></svg> Only Barolo
-                    </button>
-                    <button id="filter-bio" class="filter-btn">
-                        <svg class="filter-icon"><use href="#icon-leaf"></use></svg> Organic / Bio
-                    </button>
-                    <button id="filter-seeking" class="filter-btn">
-                        <svg class="filter-icon"><use href="#icon-handshake"></use></svg> Seeking Importer
-                    </button>
+                
+                <div class="controls-row">
+                    <div class="quick-filters">
+                        <button id="filter-barolo" class="filter-btn">
+                            <svg class="filter-icon"><use href="#icon-glass"></use></svg> Barolo
+                        </button>
+                        <button id="filter-bio" class="filter-btn">
+                            <svg class="filter-icon"><use href="#icon-leaf"></use></svg> Organic
+                        </button>
+                        <button id="filter-seeking" class="filter-btn">
+                            <svg class="filter-icon"><use href="#icon-handshake"></use></svg> Seeking Importer
+                        </button>
+                    </div>
+                    
+                    <div class="sort-actions">
+                        <select id="sort-select" class="sort-dropdown">
+                            <option value="table">Sort: Table order</option>
+                            <option value="az">Sort: A-Z</option>
+                            <option value="city">Sort: City</option>
+                        </select>
+                        <button id="btn-reset" class="btn-reset">Reset</button>
+                    </div>
                 </div>
             </div>
             <main id="producer-list" class="producer-grid"></main>
         </section>
 
         <!-- MASTERCLASSES SECTION -->
-        <section id="section-masterclasses" class="page-section" style="display:none;">
+        <section id="section-masterclasses" class="page-section">
             <div class="section-header">
-                <h2>Masterclasses</h2>
+                <h2>Masterclass Programme</h2>
                 <p>Explore the exclusive tastings and save wines.</p>
             </div>
             <div id="masterclass-list" class="mc-container"></div>
         </section>
 
         <!-- NOTEBOOK SECTION -->
-        <section id="section-notebook" class="page-section" style="display:none;">
+        <section id="section-notebook" class="page-section">
             <div class="section-header">
                 <h2>My Tasting Notes</h2>
                 <p>Wines you have saved will appear here.</p>
             </div>
             <div id="notebook-list" class="wines-list"></div>
-            <button id="export-notes" class="btn-primary" style="margin-top:24px; width: 100%;">
-                <svg class="btn-icon"><use href="#icon-mail"></use></svg> Email my notes
-            </button>
+            
+            <div id="notebook-actions" style="display:none; text-align:center; padding:0 20px;">
+                <button id="export-notes" class="btn-primary" style="width: 100%;">
+                    <svg class="btn-icon"><use href="#icon-mail"></use></svg> Email my notes
+                </button>
+            </div>
         </section>
     </div>
+        
+    <!-- Footer for Partners -->
+    <footer class="app-footer">
+        <div class="footer-content">
+            <p>Organized by</p>
+            <strong>I Vini del Piemonte &amp; Tellus Wine</strong><br>
+            <a href="https://www.ivinidelpiemonte.com" target="_blank" style="color:var(--brand); font-weight:600; font-size:13px;">www.ivinidelpiemonte.com</a>
+        </div>
+    </footer>
 
-    <!-- BOTTOM NAVIGATION (MOBILE ONLY) -->
+    <!-- BOTTOM NAVIGATION (MOBILE) -->
     <nav class="bottom-nav">
         <button class="nav-item active" data-target="section-producers">
             <svg class="nav-icon"><use href="#icon-users"></use></svg>
@@ -153,6 +170,11 @@
             <span>Notebook</span>
         </button>
     </nav>
+    
+    <!-- BACK TO TOP -->
+    <button id="back-to-top" class="back-to-top is-hidden">
+        <svg><use href="#icon-arrow-up"></use></svg>
+    </button>
 
     <!-- Modals -->
     <!-- Producer Modal -->
@@ -167,28 +189,53 @@
                     <div class="mp-info-right">
                         <div class="mp-table">Table <strong id="mp-desk">0</strong></div>
                         <div class="mp-region" id="mp-region">Region, City</div>
-                        <div id="mp-production" style="font-size:13px; color:var(--text-muted); margin-bottom: 8px;"></div>
-                        <div class="status-badge" id="mp-status-badge">
-                            <span class="dot"></span> <span id="mp-market-status">Status</span>
+                        
+                        <div style="display:flex; justify-content:space-between; align-items: flex-start; flex-wrap:wrap; margin-top:8px;">
+                            <div>
+                                <div id="mp-production" style="font-size:13px; color:var(--text-muted); margin-bottom: 8px;"></div>
+                                <div class="status-badge" id="mp-status-badge">
+                                    <span class="dot"></span> <span id="mp-market-status">Status</span>
+                                </div>
+                            </div>
+                            <div class="eno-icons" id="mp-icons-right"></div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Certifications and Icons block -->
-                <div class="eno-icons" id="mp-icons"></div>
+                <div class="eno-badges" id="mp-badges"></div>
 
                 <div class="contact-box">
                     <div class="contact-text">
                         <span>At the desk you will meet:</span>
-                        <strong id="mp-contact">Name, Role</strong>
+                        <div id="mp-contact-container">
+                            <strong id="mp-contact-name" style="display:inline;">Name</strong>, <i id="mp-contact-role">Role</i>
+                        </div>
+                        <a id="mp-website" href="#" target="_blank" style="font-size:12px; color:var(--text-muted); display:block; margin-top:4px;">website</a>
                     </div>
-                    <a id="mp-email" href="#" class="btn-outline-gold">
+                    <a id="mp-email" href="#" class="btn-outline-gold" style="width: auto;">
                         <svg class="btn-icon"><use href="#icon-mail"></use></svg> Email
                     </a>
                 </div>
 
                 <h3 class="wines-header">Wines for tasting</h3>
                 <div id="mp-wines" class="wines-list"></div>
+                
+                <div class="legend-box">
+                    <strong>Legend:</strong>
+                    <div class="legend-items">
+                        <span><span class="wine-type-badge red"></span> Red Wine</span>
+                        <span><span class="wine-type-badge white"></span> White Wine</span>
+                        <span><span class="wine-type-badge sparkling"></span> Sparkling</span>
+                        <span><span class="wine-type-badge rose"></span> Rosé</span>
+                        <span><svg class="grape-icon inline" style="margin-right:2px;"><use href="#icon-grape"></use></svg> Organic Wine</span>
+                    </div>
+                    <div class="legend-items" style="margin-top:8px;">
+                        <span><svg class="eno-icon-small"><use href="#icon-bed"></use></svg> Accommodation</span>
+                        <span><svg class="eno-icon-small"><use href="#icon-restaurant"></use></svg> Restaurant</span>
+                        <span><svg class="eno-icon-small"><use href="#icon-vineyard"></use></svg> Vineyard Activities</span>
+                        <span><svg class="eno-icon-small"><use href="#icon-pool"></use></svg> Pool</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -202,7 +249,7 @@
             </div>
             <div class="sheet-body">
                 <div class="info-card">
-                    <h3 id="info-title">Barolo & Friends</h3>
+                    <h3 style="font-family:var(--font-heading); font-size:22px; color:var(--brand); margin-bottom:12px;">Barolo & Friends Oslo</h3>
                     <p><strong>Date:</strong> August 31st, 2026</p>
                     <p><strong>Venue:</strong> Gamle Logen, Oslo</p>
                     <p style="margin-top:12px; font-size:14px; color:var(--text-muted); line-height:1.5;">
@@ -218,9 +265,22 @@
                     <a class="btn-action" href="https://maps.google.com/?q=Gamle+Logen,+Oslo" target="_blank">
                         <svg class="btn-icon"><use href="#icon-pin"></use></svg> Open in Google Maps
                     </a>
-                    <button class="btn-action" id="btn-calendar">
-                        <svg class="btn-icon"><use href="#icon-calendar"></use></svg> Add to Calendar
+                    <button class="btn-action" id="btn-calendar-ics">
+                        <svg class="btn-icon"><use href="#icon-calendar"></use></svg> Download .ics (Apple/Outlook)
                     </button>
+                    <a class="btn-action" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Barolo+%26+Friends+Oslo&dates=20260831T110000Z/20260831T180000Z&details=Official+Event+Walk+Around+Tasting&location=Gamle+Logen,+Oslo" target="_blank">
+                        <svg class="btn-icon"><use href="#icon-calendar"></use></svg> Add to Google Calendar
+                    </a>
+                </div>
+                
+                <div class="info-card" style="margin-top:20px; background:#f9f9f9;">
+                    <h4 style="font-family:var(--font-heading); font-size:18px; margin-bottom:10px; color:var(--brand-dark);">Contact Us</h4>
+                    <p style="font-size:13px; margin-bottom:10px;">To request a customized educational tour for sommeliers or for info:</p>
+                    <div style="display:flex; flex-direction:column; gap:8px;">
+                        <a href="tel:+390173787166" class="contact-link"><svg class="contact-icon"><use href="#icon-phone"></use></svg> +39 0173.787166</a>
+                        <a href="mailto:eventi@ivinidelpiemonte.com" class="contact-link"><svg class="contact-icon"><use href="#icon-mail"></use></svg> eventi@ivinidelpiemonte.com</a>
+                        <a href="https://www.ivinidelpiemonte.com" target="_blank" class="contact-link"><svg class="contact-icon"><use href="#icon-globe"></use></svg> www.ivinidelpiemonte.com</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -239,13 +299,13 @@
         </div>
     </div>
 
-    <!-- JS version 5.0 for Cache Busting -->
-    <script src="data.js?v=5.0"></script>
-    <script src="app.js?v=5.0"></script>
+    <!-- JS version 4.6 -->
+    <script src="data.js?v=4.6"></script>
+    <script src="app.js?v=4.6"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js?v=5.0').catch(e => console.log(e));
+                navigator.serviceWorker.register('./sw.js?v=4.6').catch(e => console.log(e));
             });
         }
     </script>

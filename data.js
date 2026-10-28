@@ -4,7 +4,7 @@ const eventData = {
     "title": "Barolo & Friends",
     "subtitle": "Oslo, August 31st 2026",
     "welcomeMessage": "Welcome to the 2026 edition",
-    "slogan": "Piedmont: where wine is history and history is wine.",
+    "slogan": "Piedmont: where wine is history.",
     "coverImage": "assets/cover.jpg"
   },
   "producers": [
@@ -17,8 +17,9 @@ const eventData = {
     "importer": null,
     "market": "seeking",
     "contactName": "Gianluca Viberti",
-    "contactRole": "Owner & Winemaker",
+    "contactRole": "Owner",
     "email": "gianluca.viberti@casinabric-barolo.it",
+    "website": "www.casinabric-barolo.it",
     "production": "90.000",
     "certifications": [
       "SQNPI"
@@ -30,37 +31,49 @@ const eventData = {
         "id": "p1_w0",
         "name": "Nebbiolo Spumante DOC Blanc De Noir Z\u00e8ro Dosage",
         "vintage": "NV",
-        "type": "Sparkling"
+        "type": "Sparkling",
+        "color": "sparkling",
+        "organic": false
       },
       {
         "id": "p1_w1",
         "name": "Nebbiolo Spumante DOC Ros\u00e8 De Noir Extra Brut Millesimato",
         "vintage": "2022",
-        "type": "Sparkling"
+        "type": "Sparkling",
+        "color": "sparkling",
+        "organic": false
       },
       {
         "id": "p1_w2",
         "name": "Langhe DOC Arneis Tenuta Parco",
         "vintage": "2025",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p1_w3",
         "name": "Vino Rosso Nebbiolo Mesd\u00ec",
         "vintage": "NV",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p1_w4",
         "name": "Langhe DOC Nebbiolo Tenuta Parco",
         "vintage": "2023",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p1_w5",
         "name": "Barolo DOCG del Comune di Serralunga d'Alba Casina Bric",
         "vintage": "2020",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -75,6 +88,7 @@ const eventData = {
     "contactName": "Francesco Boschis",
     "contactRole": "Owner",
     "email": "info@boschisfrancesco.it",
+    "website": "www.boschisfrancesco.it",
     "production": "25.000",
     "certifications": [
       "Green Experience"
@@ -86,37 +100,49 @@ const eventData = {
         "id": "p2_w0",
         "name": "Langhe DOC Freisa Bosco Delle Cicale",
         "vintage": "2025",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p2_w1",
         "name": "Piemonte DOC Grignolino",
         "vintage": "2025",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p2_w2",
         "name": "Barbera d'Alba DOC Superiore Vigna Le Masserie",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p2_w3",
         "name": "Dogliani DOCG Pianezzo",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p2_w4",
         "name": "Dogliani DOCG Superiore Pianezzo Vigne Sor\u00ec San Martino",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p2_w5",
         "name": "Dogliani DOCG Superiore Pianezzo Vigna Dei Prey",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -131,6 +157,7 @@ const eventData = {
     "contactName": "Carlo Revello",
     "contactRole": "Owner",
     "email": "info@carlorevello.com",
+    "website": "www.carlorevello.com",
     "production": "55.000",
     "certifications": [
       "SQNPI"
@@ -142,37 +169,49 @@ const eventData = {
         "id": "p3_w0",
         "name": "Dolcetto d'Alba",
         "vintage": "2025",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p3_w1",
         "name": "Langhe DOC Nebbiolo",
         "vintage": "2025",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p3_w2",
         "name": "Barolo DOCG",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p3_w3",
         "name": "Barolo DOCG Boiolo",
         "vintage": "2021",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p3_w4",
         "name": "Barolo DOCG Giachini",
         "vintage": "2020",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p3_w5",
         "name": "Barolo DOCG Giachini",
         "vintage": "2021",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -184,9 +223,10 @@ const eventData = {
     "desk": "4",
     "importer": "Barbatella As",
     "market": "imported",
-    "contactName": "Marco",
+    "contactName": "Export Desk",
     "contactRole": "Export Manager",
     "email": "cascina@labarbatella.com",
+    "website": "www.labarbatella.com",
     "production": "30.000",
     "certifications": [],
     "icons": [],
@@ -196,37 +236,49 @@ const eventData = {
         "id": "p4_w0",
         "name": "Monferrato DOC Bianco No\u00e8",
         "vintage": "2024",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p4_w1",
         "name": "Piemonte DOC Chardonnay",
         "vintage": "2024",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p4_w2",
         "name": "Barbera d'Asti DOCG La Barbatella",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p4_w3",
         "name": "Monferrato DOC Rosso Ruanera",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p4_w4",
         "name": "Nizza DOCG La Vigna Dell'Angelo",
         "vintage": "2023",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p4_w5",
         "name": "Nizza Riserva DOCG La Vigna Dell'Angelo",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -241,6 +293,7 @@ const eventData = {
     "contactName": "Export Desk",
     "contactRole": "Export Manager",
     "email": "info@castellodineive.it",
+    "website": "www.castellodineive.it",
     "production": "160.000",
     "certifications": [
       "Equalitas"
@@ -252,37 +305,49 @@ const eventData = {
         "id": "p5_w0",
         "name": "Langhe DOC Arneis Montebertotto",
         "vintage": "2025",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p5_w1",
         "name": "Langhe DOC Pinot Nero I Cortini",
         "vintage": "2020",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p5_w2",
         "name": "Barbera d'Alba DOC Superiore",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p5_w3",
         "name": "Piemonte DOC Albarossa",
         "vintage": "2020",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p5_w4",
         "name": "Barbaresco DOCG Gallina",
         "vintage": "2023",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p5_w5",
         "name": "Barbaresco DOCG Albesani Vigna Santo Stefano",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -297,6 +362,7 @@ const eventData = {
     "contactName": "Claudio Mariotto",
     "contactRole": "Owner & Winemaker",
     "email": "info@claudiomariotto.it",
+    "website": "www.claudiomariotto.it",
     "production": "120.000",
     "certifications": [],
     "icons": [],
@@ -306,37 +372,49 @@ const eventData = {
         "id": "p6_w0",
         "name": "Colli Tortonesi DOC Derthona Timorasso Piccolo",
         "vintage": "2025",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p6_w1",
         "name": "Colli Tortonesi DOC Derthona Timorasso DOC",
         "vintage": "2024",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p6_w2",
         "name": "Colli Tortonesi DOC Derthona Timorasso Bricco San Michele",
         "vintage": "2024",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p6_w3",
         "name": "Colli Tortonesi DOC Derthona Timorasso Cavallina",
         "vintage": "2022",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p6_w4",
         "name": "Colli Tortonesi DOC Freisa Bragh\u00e9",
         "vintage": "2023",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p6_w5",
         "name": "Colli Tortonesi DOC Barbera Monleale",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -351,6 +429,7 @@ const eventData = {
     "contactName": "Export Desk",
     "contactRole": "Export Manager",
     "email": "info@domenicoclerico.com",
+    "website": "www.domenicoclerico.com",
     "production": "120.000",
     "certifications": [
       "SQNPI"
@@ -362,37 +441,49 @@ const eventData = {
         "id": "p7_w0",
         "name": "Barbera d'Alba DOC Trevigne",
         "vintage": "2023",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p7_w1",
         "name": "Langhe DOC Nebbiolo Capisme-e",
         "vintage": "2025",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p7_w2",
         "name": "Barolo DOCG Del Comune Di Monforte D'Alba",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p7_w3",
         "name": "Barolo DOCG Ginestra Pajana",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p7_w4",
         "name": "Barolo DOCG Ginestra Ciabot Mentin",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p7_w5",
         "name": "Barolo DOCG Percristina",
         "vintage": "2015",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -407,6 +498,7 @@ const eventData = {
     "contactName": "Export Desk",
     "contactRole": "Export Manager",
     "email": "info@flli-casetta.it",
+    "website": "www.flli-casetta.it",
     "production": "180.000",
     "certifications": [
       "SQNPI"
@@ -418,37 +510,49 @@ const eventData = {
         "id": "p8_w0",
         "name": "Gavi DOCG",
         "vintage": "2025",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p8_w1",
         "name": "Roero Arneis DOCG",
         "vintage": "2025",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p8_w2",
         "name": "Barbera d'Alba DOC",
         "vintage": "2021",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p8_w3",
         "name": "Nebbiolo d'Alba DOC",
         "vintage": "2019",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p8_w4",
         "name": "Barbaresco DOCG",
         "vintage": "2020",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p8_w5",
         "name": "Barolo DOCG Case Nere",
         "vintage": "2016",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -463,6 +567,7 @@ const eventData = {
     "contactName": "Export Desk",
     "contactRole": "Export Manager",
     "email": "info@fontanabianca.it",
+    "website": "www.fontanabianca.it",
     "production": "110.000",
     "certifications": [
       "Green Experience"
@@ -474,37 +579,49 @@ const eventData = {
         "id": "p9_w0",
         "name": "Alta Langa DOCG Classe 91",
         "vintage": "2022",
-        "type": "Sparkling"
+        "type": "Sparkling",
+        "color": "sparkling",
+        "organic": false
       },
       {
         "id": "p9_w1",
         "name": "Langhe DOC Rosato Lin",
         "vintage": "2025",
-        "type": "Ros\u00e9"
+        "type": "Ros\u00e9",
+        "color": "rose",
+        "organic": false
       },
       {
         "id": "p9_w2",
         "name": "Langhe DOC Nebbiolo",
         "vintage": "2025",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p9_w3",
         "name": "Barbera d'Alba DOC Superiore",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p9_w4",
         "name": "Barbaresco DOCG",
         "vintage": "2023",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p9_w5",
         "name": "Barbaresco DOCG Bordini",
         "vintage": "2023",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -519,6 +636,7 @@ const eventData = {
     "contactName": "Export Desk",
     "contactRole": "Export Manager",
     "email": "info@francoconterno.it",
+    "website": "www.francoconterno.it",
     "production": "300.000",
     "certifications": [],
     "icons": [],
@@ -528,37 +646,49 @@ const eventData = {
         "id": "p10_w0",
         "name": "Langhe DOC Chardonnay Bricco Torta",
         "vintage": "2023",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p10_w1",
         "name": "Langhe DOC Nebbiolo Cascina Sciulun",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p10_w2",
         "name": "Langhe DOC Nebbiolo Franco Conterno Cascina Sciulun",
         "vintage": "2023",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p10_w3",
         "name": "Barbera d'Alba DOC Superiore Cascina Sciulun",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p10_w4",
         "name": "Barolo DOCG I Manichei",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p10_w5",
         "name": "Barolo DOCG Bussia",
         "vintage": "2021",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -573,6 +703,7 @@ const eventData = {
     "contactName": "Sofia",
     "contactRole": "Export Manager",
     "email": "sofia@giovannirosso.com",
+    "website": "www.giovannirosso.com",
     "production": "450.000",
     "certifications": [
       "Equalitas"
@@ -584,37 +715,49 @@ const eventData = {
         "id": "p11_w0",
         "name": "Roero Arneis DOCG",
         "vintage": "2025",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p11_w1",
         "name": "Langhe DOC Nebbiolo",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p11_w2",
         "name": "Barbera d'Alba DOC Donna Margherita",
         "vintage": "2025",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p11_w3",
         "name": "Barolo DOCG Serralunga",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p11_w4",
         "name": "Barolo DOCG Serra",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p11_w5",
         "name": "Barolo DOCG Cerretta",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -629,6 +772,7 @@ const eventData = {
     "contactName": "Export Desk",
     "contactRole": "Export Manager",
     "email": "info@grassofratelli.com",
+    "website": "www.grassofratelli.com",
     "production": "70.000",
     "certifications": [
       "Green Experience"
@@ -640,37 +784,49 @@ const eventData = {
         "id": "p12_w0",
         "name": "Langhe DOC Chardonnay Settembrino",
         "vintage": "2024",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p12_w1",
         "name": "Vino Rosso Trey",
         "vintage": "NV",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p12_w2",
         "name": "Barbaresco DOCG Vallegrande",
         "vintage": "2020",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p12_w3",
         "name": "Barbaresco DOCG Giacosa Spessa",
         "vintage": "2016",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p12_w4",
         "name": "Barbaresco DOCG San Stunet Riserva",
         "vintage": "2013",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p12_w5",
         "name": "Barbaresco DOCG Vallegrande",
         "vintage": "2015",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -685,6 +841,7 @@ const eventData = {
     "contactName": "Guido Rivella",
     "contactRole": "Owner & Winemaker",
     "email": "cantina@agriturismorivella.it",
+    "website": "www.guidorivella.it",
     "production": "22.000",
     "certifications": [
       "Green Experience"
@@ -696,37 +853,49 @@ const eventData = {
         "id": "p13_w0",
         "name": "Langhe DOC Chardonnay",
         "vintage": "2024",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p13_w1",
         "name": "Barbera d'Alba DOC",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p13_w2",
         "name": "Langhe DOC Nebbiolo",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p13_w3",
         "name": "Barbaresco DOCG",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p13_w4",
         "name": "Barbaresco DOCG Montestefano",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p13_w5",
         "name": "Barbaresco DOCG",
         "vintage": "2020",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -741,6 +910,7 @@ const eventData = {
     "contactName": "Elisa",
     "contactRole": "Export Manager",
     "email": "elisa@lacolomberavini.it",
+    "website": "www.lacolomberavini.it",
     "production": "100.000",
     "certifications": [],
     "icons": [],
@@ -750,31 +920,41 @@ const eventData = {
         "id": "p14_w0",
         "name": "Colli Tortonesi DOC Derthona Timorasso",
         "vintage": "2024",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p14_w1",
         "name": "Colli Tortonesi DOC Derthona Timorasso Il Montino",
         "vintage": "2024",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p14_w2",
         "name": "Colli Tortonesi DOC Cortese Bricco Bartolomeo",
         "vintage": "2025",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p14_w3",
         "name": "Colli Tortonesi DOC Barbera Vegia Rampana",
         "vintage": "2023",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p14_w4",
         "name": "Colli Tortonesi DOC Barbera Monleale",
         "vintage": "2023",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -789,15 +969,16 @@ const eventData = {
     "contactName": "Roberto Damonte",
     "contactRole": "Owner & Winemaker",
     "email": "malvira@malvira.com",
+    "website": "www.malvira.com",
     "production": "250.000",
     "certifications": [
       "Organic winery"
     ],
     "icons": [
       "accommodation",
+      "vineyard",
       "restaurant",
-      "pool",
-      "vineyard"
+      "pool"
     ],
     "logo": "assets/logo_placeholder.png",
     "wines": [
@@ -805,37 +986,49 @@ const eventData = {
         "id": "p15_w0",
         "name": "N\u00b0 0 Brut Nature Ros\u00e9",
         "vintage": "2020",
-        "type": "Sparkling"
+        "type": "Sparkling",
+        "color": "sparkling",
+        "organic": true
       },
       {
         "id": "p15_w1",
         "name": "Roero Arneis DOCG",
         "vintage": "2025",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": true
       },
       {
         "id": "p15_w2",
         "name": "Roero Arneis DOCG Riserva Vigna Saglietto",
         "vintage": "2023",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": true
       },
       {
         "id": "p15_w3",
         "name": "Barbera d'Alba DOC",
         "vintage": "2023",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p15_w4",
         "name": "Roero DOCG Riserva Vigna Mombeltramo",
         "vintage": "2016",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p15_w5",
         "name": "Roero DOCG Riserva Renesio",
         "vintage": "2011",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -850,6 +1043,7 @@ const eventData = {
     "contactName": "Martina",
     "contactRole": "Owner & Export Manager",
     "email": "martina@moccagatta.eu",
+    "website": "www.moccagatta.eu",
     "production": "60.000",
     "certifications": [
       "SQNPI"
@@ -861,31 +1055,41 @@ const eventData = {
         "id": "p16_w0",
         "name": "Langhe DOC Chardonnay",
         "vintage": "2025",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p16_w1",
         "name": "Langhe DOC Nebbiolo",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p16_w2",
         "name": "Barbera d'Alba DOC",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p16_w3",
         "name": "Barbaresco DOCG",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p16_w4",
         "name": "Barbaresco DOCG Bric Balin",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -900,6 +1104,7 @@ const eventData = {
     "contactName": "Export Desk",
     "contactRole": "Export Manager",
     "email": "monchierovini@monchierovini.it",
+    "website": "www.monchierovini.it",
     "production": "60.000",
     "certifications": [
       "SQNPI"
@@ -911,25 +1116,33 @@ const eventData = {
         "id": "p17_w0",
         "name": "Barbera d'Alba DOC",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p17_w1",
         "name": "Langhe DOC Nebbiolo",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p17_w2",
         "name": "Barolo DOCG Comune Di Castiglione Falletto",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p17_w3",
         "name": "Barolo DOCG Rocche Di Castiglione",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -944,6 +1157,7 @@ const eventData = {
     "contactName": "Export Desk",
     "contactRole": "Export Manager",
     "email": "vino@poderegagliassi.com",
+    "website": "www.poderegagliassi.com",
     "production": "40.000",
     "certifications": [
       "Organic winery"
@@ -955,37 +1169,49 @@ const eventData = {
         "id": "p18_w0",
         "name": "Alta Langa DOCG Extra Brut",
         "vintage": "2022",
-        "type": "Sparkling"
+        "type": "Sparkling",
+        "color": "sparkling",
+        "organic": false
       },
       {
         "id": "p18_w1",
         "name": "Langhe DOC Chardonnay",
         "vintage": "2025",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p18_w2",
         "name": "Barbera d'Alba DOC",
         "vintage": "2023",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p18_w3",
         "name": "Nebbiolo d'Alba DOC",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p18_w4",
         "name": "Barolo DOCG",
         "vintage": "2021",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p18_w5",
         "name": "Barolo DOCG Badarina",
         "vintage": "2021",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -1000,6 +1226,7 @@ const eventData = {
     "contactName": "Export Desk",
     "contactRole": "Export Manager",
     "email": "podericolla@podericolla.it",
+    "website": "www.podericolla.it",
     "production": "150.000",
     "certifications": [
       "SQNPI"
@@ -1011,37 +1238,49 @@ const eventData = {
         "id": "p19_w0",
         "name": "Langhe DOC Riesling Ranera",
         "vintage": "2023",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p19_w1",
         "name": "Dolcetto d'Alba DOC Pian Balbo",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p19_w2",
         "name": "Barbera d'Alba DOC Costa Bruna",
         "vintage": "2023",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p19_w3",
         "name": "Langhe DOC Bricco Del Drago",
         "vintage": "2021",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p19_w4",
         "name": "Barbaresco DOCG Roncaglie",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p19_w5",
         "name": "Barolo DOCG Bussia",
         "vintage": "2021",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -1056,6 +1295,7 @@ const eventData = {
     "contactName": "Michele Reverdito",
     "contactRole": "Owner",
     "email": "info@reverdito.it",
+    "website": "www.reverdito.it",
     "production": "110.000",
     "certifications": [
       "SQNPI"
@@ -1067,37 +1307,49 @@ const eventData = {
         "id": "p20_w0",
         "name": "Verduno Pelaverga DOC",
         "vintage": "2025",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p20_w1",
         "name": "Langhe DOC Nebbiolo Siamne",
         "vintage": "2023",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p20_w2",
         "name": "Barolo DOCG",
         "vintage": "2021",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p20_w3",
         "name": "Barolo DOCG Ascheri",
         "vintage": "2021",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p20_w4",
         "name": "Barolo DOCG Bricco Cogni",
         "vintage": "2020",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p20_w5",
         "name": "Barolo DOCG Badarina",
         "vintage": "2020",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -1112,6 +1364,7 @@ const eventData = {
     "contactName": "Elena",
     "contactRole": "Owner & Export Manager",
     "email": "elena@rizieri.com",
+    "website": "www.rizieri.com",
     "production": "40.000",
     "certifications": [
       "SQNPI"
@@ -1123,37 +1376,49 @@ const eventData = {
         "id": "p21_w0",
         "name": "Langhe DOC Arneis Arvi\u00e0",
         "vintage": "2025",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p21_w1",
         "name": "Langhe DOC Rosato Odda",
         "vintage": "2025",
-        "type": "Ros\u00e9"
+        "type": "Ros\u00e9",
+        "color": "rose",
+        "organic": false
       },
       {
         "id": "p21_w2",
         "name": "Barbera d'Alba DOC Sbilauta",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p21_w3",
         "name": "Nebbiolo d'Alba DOC",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p21_w4",
         "name": "Barolo DOCG Del Comune Di La Morra",
         "vintage": "2020",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p21_w5",
         "name": "Barolo DOCG Silio",
         "vintage": "2018",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -1168,6 +1433,7 @@ const eventData = {
     "contactName": "Export Desk",
     "contactRole": "Export Manager",
     "email": "info@fratelliseghesio.com",
+    "website": "www.fratelliseghesio.com",
     "production": "60.000",
     "certifications": [
       "SQNPI"
@@ -1179,37 +1445,49 @@ const eventData = {
         "id": "p22_w0",
         "name": "Langhe DOC Bianco",
         "vintage": "2024",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p22_w1",
         "name": "Langhe DOC Nebbiolo",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p22_w2",
         "name": "Barbera d'Alba DOC",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p22_w3",
         "name": "Barbera d'Alba DOC Superiore La Chiesa",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p22_w4",
         "name": "Barolo DOCG Castelletto La Villa",
         "vintage": "2021",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p22_w5",
         "name": "Barolo DOCG Castelletto",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -1224,6 +1502,7 @@ const eventData = {
     "contactName": "Cinzia Travaglini",
     "contactRole": "Owner",
     "email": "azienda@travaglinigattinara.it",
+    "website": "www.travaglinigattinara.it",
     "production": "240.000",
     "certifications": [],
     "icons": [],
@@ -1233,25 +1512,33 @@ const eventData = {
         "id": "p23_w0",
         "name": "Vino Spumante Di Qualit\u00e0 Nebole 48 Mesi Su Lieviti",
         "vintage": "2020",
-        "type": "Sparkling"
+        "type": "Sparkling",
+        "color": "sparkling",
+        "organic": false
       },
       {
         "id": "p23_w1",
         "name": "Gattinara DOCG",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p23_w2",
         "name": "Gattinara DOCG Trevigne",
         "vintage": "2019",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p23_w3",
         "name": "Gattinara Riserva DOCG",
         "vintage": "2018",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   },
@@ -1266,6 +1553,7 @@ const eventData = {
     "contactName": "Export Desk",
     "contactRole": "Export Manager",
     "email": "info@vinory.com",
+    "website": "www.vinory.com",
     "production": "100.000",
     "certifications": [],
     "icons": [],
@@ -1275,37 +1563,49 @@ const eventData = {
         "id": "p24_w0",
         "name": "Roero Arneis DOCG",
         "vintage": "2024",
-        "type": "White"
+        "type": "White",
+        "color": "white",
+        "organic": false
       },
       {
         "id": "p24_w1",
         "name": "Barbera d'Asti DOCG Ch\u00e8rna",
         "vintage": "2024",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p24_w2",
         "name": "Barbera d'Asti DOCG Superiore",
         "vintage": "2023",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p24_w3",
         "name": "Nizza DOCG Bricco",
         "vintage": "2022",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p24_w4",
         "name": "Barolo DOCG Bricco San Pietro",
         "vintage": "2021",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       },
       {
         "id": "p24_w5",
         "name": "Barbaresco Riserva DOCG Serragrilli",
         "vintage": "2020",
-        "type": "Red"
+        "type": "Red",
+        "color": "red",
+        "organic": false
       }
     ]
   }
@@ -1315,11 +1615,12 @@ const eventData = {
       "id": "mc1",
       "time": "13:00–14:00",
       "title": "The terroirs of Piedmont",
-      "speaker": "Francesco Marzola",
+      "speaker": "Nordic Champion Sommelier Francesco Marzola",
+      "target": "Reserved for professionals, dedicated to the producers of I Vini del Piemonte",
       "wines": [
-        { "id": "p15_w1", "producerId": "p15", "producerName": "Malvirà", "name": "Roero Arneis DOCG", "vintage": "2025" },
-        { "id": "p23_w1", "producerId": "p23", "producerName": "Travaglini", "name": "Gattinara DOCG", "vintage": "2022" },
-        { "id": "p3_w2", "producerId": "p3", "producerName": "Carlo Revello & Figli", "name": "Barolo DOCG", "vintage": "2022" }
+        { "id": "p15_w1", "producerId": "p15", "producerName": "Malvirà", "name": "Roero Arneis DOCG", "vintage": "2025", "table": "15", "color": "white", "organic": true },
+        { "id": "p23_w1", "producerId": "p23", "producerName": "Travaglini", "name": "Gattinara DOCG", "vintage": "2022", "table": "23", "color": "red", "organic": false },
+        { "id": "p3_w2", "producerId": "p3", "producerName": "Carlo Revello & Figli", "name": "Barolo DOCG", "vintage": "2022", "table": "3", "color": "red", "organic": false }
       ]
     }
   ]
