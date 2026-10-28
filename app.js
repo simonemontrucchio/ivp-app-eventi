@@ -13,17 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const btnBio = document.getElementById('filter-bio');
         const btnSeeking = document.getElementById('filter-seeking');
         
-        const navProducers = document.getElementById('nav-producers');
-        const navMasterclasses = document.getElementById('nav-masterclasses');
-        const navNotebook = document.getElementById('nav-notebook');
-        
-        const sectionProducers = document.getElementById('section-producers');
-        const sectionMasterclasses = document.getElementById('section-masterclasses');
-        const sectionNotebook = document.getElementById('section-notebook');
-        
-        const countProducers = document.getElementById('count-producers');
-        const countNotebook = document.getElementById('count-notebook');
-        
         const overlayProducer = document.getElementById('overlay-producer');
         const overlayInfo = document.getElementById('overlay-info');
         
@@ -53,8 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('welcome-message').textContent = eventData.event.welcomeMessage;
         document.getElementById('event-slogan').textContent = eventData.event.slogan;
         document.getElementById('app-hero').style.backgroundImage = `url(${eventData.event.coverImage})`;
-        countProducers.textContent = eventData.producers.length;
-
+        
         updateNotebookCount();
         renderProducers();
         renderMasterclasses();
@@ -65,34 +53,35 @@ document.addEventListener('DOMContentLoaded', () => {
         btnBio.addEventListener('click', () => { activeFilters.bio = !activeFilters.bio; btnBio.classList.toggle('active'); renderProducers(); });
         btnSeeking.addEventListener('click', () => { activeFilters.seeking = !activeFilters.seeking; btnSeeking.classList.toggle('active'); renderProducers(); });
 
-        // Nav
-        function switchTab(tab) {
-            navProducers.classList.remove('active');
-            navMasterclasses.classList.remove('active');
-            navNotebook.classList.remove('active');
-            sectionProducers.style.display = 'none';
-            sectionMasterclasses.style.display = 'none';
-            sectionNotebook.style.display = 'none';
-            window.scrollTo(0,0);
-            
-            if(tab === 'producers') {
-                navProducers.classList.add('active');
-                sectionProducers.style.display = 'block';
-                renderProducers();
-            } else if(tab === 'masterclasses') {
-                navMasterclasses.classList.add('active');
-                sectionMasterclasses.style.display = 'block';
-                renderMasterclasses(); // re-render to update hearts
-            } else if(tab === 'notebook') {
-                navNotebook.classList.add('active');
-                sectionNotebook.style.display = 'block';
-                renderNotebook();
-            }
-        }
+        // Bottom Navigation Logic
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('.page-section');
         
-        navProducers.addEventListener('click', () => switchTab('producers'));
-        navMasterclasses.addEventListener('click', () => switchTab('masterclasses'));
-        navNotebook.addEventListener('click', () => switchTab('notebook'));
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetId = item.getAttribute('data-target');
+                
+                // Update active state on buttons
+                navItems.forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+                
+                // Update active state on sections
+                sections.forEach(sec => {
+                    sec.style.display = 'none';
+                    sec.classList.remove('active');
+                });
+                const targetSection = document.getElementById(targetId);
+                targetSection.style.display = 'block';
+                // slight delay for animation
+                setTimeout(() => targetSection.classList.add('active'), 10);
+                
+                window.scrollTo(0, 0);
+                
+                if(targetId === 'section-producers') renderProducers();
+                if(targetId === 'section-masterclasses') renderMasterclasses();
+                if(targetId === 'section-notebook') renderNotebook();
+            });
+        });
         
         document.getElementById('btn-info').addEventListener('click', () => {
             overlayInfo.classList.add('show');
@@ -172,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="card-status">${marketBadge}</div>
                     <div class="card-bottom">
                         <span>${p.wines.length} wines</span>
-                        <span class="view-link">View producer ↗</span>
+                        <span class="view-link">View producer &rarr;</span>
                     </div>
                 `;
                 card.addEventListener('click', () => openProducerModal(p));
@@ -234,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
             attachWineListeners(winesContainer);
             
             overlayProducer.classList.add('show');
-            document.body.style.overflow = 'hidden'; // prevent background scrolling
+            document.body.style.overflow = 'hidden'; 
         }
 
         function attachWineListeners(container) {
@@ -272,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function updateNotebookCount() {
             const count = Object.keys(savedWines).length;
-            countNotebook.textContent = count;
+            document.getElementById('count-notebook').textContent = count;
         }
 
         function renderNotebook() {
@@ -294,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let foundWine = null; let foundProducer = null;
                 // Check normal producers
                 producers.forEach(p => { p.wines.forEach(w => { if(w.id === id) { foundWine = w; foundProducer = {name: p.name}; } }); });
-                // Check masterclasses if not found
+                // Check masterclasses
                 if(!foundWine) {
                     eventData.masterclasses.forEach(mc => { mc.wines.forEach(w => { if(w.id === id) { foundWine = w; foundProducer = {name: w.producer + ' (Masterclass)'}; } }); });
                 }
@@ -309,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <svg><use href="#icon-heart"></use></svg>
                         </button>
                         <div class="wine-header">
-                            <div class="wine-meta" style="color:var(--brand); font-weight:700; margin-bottom:6px; font-size: 11px; text-transform:uppercase; letter-spacing:0.5px;">${foundProducer.name}</div>
+                            <div class="wine-meta" style="color:var(--brand); font-weight:700; margin-bottom:8px; font-size: 11px; text-transform:uppercase; letter-spacing:1px;">${foundProducer.name}</div>
                             <div class="wine-name">${foundWine.name} ${organicHtml}</div>
                             <div class="wine-meta">${foundWine.vintage || ''} ${foundWine.type ? '• '+foundWine.type : ''}</div>
                         </div>

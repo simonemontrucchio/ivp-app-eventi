@@ -2,20 +2,12 @@
   "name": "Barolo & Friends Event App",
   "short_name": "B&F Oslo",
   "description": "Official App for Barolo & Friends Oslo 2026",
-  "start_url": "./index.html",
+  "start_url": "./index.html?v=4.1",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#8b1836",
+  "background_color": "#f8f6f3",
+  "theme_color": "#7A1731",
   "icons": [
-    {
-      "src": "assets/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "assets/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
   ]
 }
