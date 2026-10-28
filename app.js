@@ -9,12 +9,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const grid = document.getElementById('producer-list');
         const overlayProducer = document.getElementById('overlay-producer');
         
-        // Navigation Logic
-        const navItems = document.querySelectorAll('.nav-item');
+        // Navigation
+        const navItemsMobile = document.querySelectorAll('.bottom-nav .nav-item');
+        const navItemsDesktop = document.querySelectorAll('.top-nav-links .nav-item-desktop');
         const sections = document.querySelectorAll('.page-section');
         
         function switchTab(targetId) {
-            navItems.forEach(nav => {
+            navItemsMobile.forEach(nav => {
+                nav.classList.remove('active');
+                if(nav.getAttribute('data-target') === targetId) nav.classList.add('active');
+            });
+            navItemsDesktop.forEach(nav => {
                 nav.classList.remove('active');
                 if(nav.getAttribute('data-target') === targetId) nav.classList.add('active');
             });
@@ -29,23 +34,19 @@ document.addEventListener('DOMContentLoaded', () => {
             if(targetId === 'section-notebook') renderNotebook();
         }
         
-        navItems.forEach(item => {
-            item.addEventListener('click', () => switchTab(item.getAttribute('data-target')));
-        });
+        navItemsMobile.forEach(item => item.addEventListener('click', () => switchTab(item.getAttribute('data-target'))));
+        navItemsDesktop.forEach(item => item.addEventListener('click', () => switchTab(item.getAttribute('data-target'))));
 
         // Modals
-        document.getElementById('btn-info').addEventListener('click', () => {
-            document.getElementById('overlay-info').classList.add('show');
-        });
+        document.getElementById('btn-info').addEventListener('click', () => document.getElementById('overlay-info').classList.add('show'));
+        document.getElementById('btn-info-desktop').addEventListener('click', () => document.getElementById('overlay-info').classList.add('show'));
         document.getElementById('btn-open-map').addEventListener('click', () => {
             document.getElementById('overlay-info').classList.remove('show');
             document.getElementById('overlay-map').classList.add('show');
         });
 
         document.querySelectorAll('.close-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.getElementById(e.currentTarget.dataset.close).classList.remove('show');
-            });
+            btn.addEventListener('click', (e) => document.getElementById(e.currentTarget.dataset.close).classList.remove('show'));
         });
         document.querySelectorAll('.modal-overlay').forEach(overlay => {
             overlay.addEventListener('click', (e) => {
@@ -63,16 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        function getEnotourismIcon(type) {
-            const map = {
-                'accommodation': '<svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>',
-                'restaurant': '<svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>',
-                'vineyard': '<svg viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg>'
-            };
-            return map[type] || '';
-        }
-
-        // Global function to open producer by ID (allows deep linking from Notebook/Masterclass)
         window.openProducerById = function(id) {
             const p = producers.find(x => x.id === id);
             if(p) openProducerModal(p);
@@ -85,12 +76,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (activeFilters.text) matchText = `${p.name} ${p.region} ${p.wines.map(w=>w.name).join(' ')}`.toLowerCase().includes(activeFilters.text);
                 let matchSeeking = activeFilters.seeking ? (p.market === 'seeking') : true;
                 let matchBarolo = activeFilters.barolo ? p.wines.some(w => w.name.toLowerCase().includes('barolo')) : true;
-                let matchBio = activeFilters.bio ? p.wines.some(w => w.organic) : true;
+                let matchBio = activeFilters.bio ? p.certifications.includes('Organic winery') || p.certifications.includes('Green Experience') : true;
                 return matchText && matchSeeking && matchBarolo && matchBio;
             });
 
             if(filtered.length === 0) {
-                grid.innerHTML = `<div style="grid-column:1/-1; padding:40px; text-align:center; color:#999;">No producers found.</div>`;
+                grid.innerHTML = `<div style="grid-column:1/-1; padding:40px; text-align:center; color:#999;">No producers found matching criteria.</div>`;
                 return;
             }
 
@@ -98,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const card = document.createElement('div');
                 card.className = 'producer-card';
                 let marketBadge = p.market === 'seeking' 
-                    ? `<span class="status-badge seeking"><span class="dot"></span>Seeking importer</span>` 
+                    ? `<span class="status-badge seeking"><span class="dot"></span>Searching for importer</span>` 
                     : `<span class="status-badge imported"><span class="dot"></span>Importer: ${p.importer}</span>`;
                 card.innerHTML = `
                     <div class="card-top">
@@ -121,22 +112,38 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('mp-name').textContent = p.name;
             document.getElementById('mp-desk').textContent = p.desk;
             document.getElementById('mp-region').textContent = `${p.region} • ${p.city}`;
-            document.getElementById('mp-contact').textContent = `${p.contactName}`;
+            document.getElementById('mp-contact').textContent = `${p.contactName}, ${p.contactRole}`;
+            
+            // Production data
+            const prodEl = document.getElementById('mp-production');
+            if (p.production) {
+                prodEl.textContent = `Production: ${p.production} bottles`;
+                prodEl.style.display = 'block';
+            } else {
+                prodEl.style.display = 'none';
+            }
             
             const emailBtn = document.getElementById('mp-email');
-            emailBtn.href = `mailto:${p.email}`;
+            if(p.email) {
+                emailBtn.href = `mailto:${p.email}`;
+                emailBtn.style.display = 'flex';
+            } else {
+                emailBtn.style.display = 'none';
+            }
             
-            let marketText = p.market === 'seeking' ? 'Seeking Importer' : `Imported by ${p.importer}`;
+            let marketText = p.market === 'seeking' ? 'Searching for importer' : `Imported by: ${p.importer}`;
             const badgeEl = document.getElementById('mp-status-badge');
             badgeEl.className = `status-badge ${p.market === 'seeking' ? 'seeking' : 'imported'}`;
             document.getElementById('mp-market-status').textContent = marketText;
 
+            // Certifications
             const iconsContainer = document.getElementById('mp-icons');
             iconsContainer.innerHTML = '';
-            if (p.icons && p.icons.length > 0) {
-                p.icons.forEach(iconType => {
-                    const div = document.createElement('div'); div.className = 'eno-icon';
-                    div.innerHTML = getEnotourismIcon(iconType); iconsContainer.appendChild(div);
+            if (p.certifications && p.certifications.length > 0) {
+                p.certifications.forEach(cert => {
+                    const div = document.createElement('div'); div.className = 'eno-badge';
+                    div.textContent = cert;
+                    iconsContainer.appendChild(div);
                 });
             }
 
@@ -145,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             p.wines.forEach(w => {
                 const wDiv = document.createElement('div'); wDiv.className = 'wine-item';
-                let organicHtml = w.organic ? `<svg class="grape-icon"><use href="#icon-leaf"></use></svg>` : '';
                 let isSaved = !!savedWines[w.id];
                 
                 wDiv.innerHTML = `
@@ -153,8 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <svg><use href="${isSaved ? '#icon-heart-filled' : '#icon-heart'}"></use></svg>
                     </button>
                     <div class="wine-header">
-                        <div class="wine-name">${w.name} ${organicHtml}</div>
-                        <div class="wine-meta">${w.vintage} &bull; ${w.type}</div>
+                        <div class="wine-name">${w.name}</div>
+                        <div class="wine-meta">${w.vintage !== 'NV' ? w.vintage : 'NV'} &bull; ${w.type}</div>
                     </div>
                     <textarea class="wine-note-input" data-wine-id="${w.id}" placeholder="Tasting notes...">${wineNotes[w.id] || ''}</textarea>
                 `;
@@ -205,9 +211,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function updateNotebookCount() {
             const count = Object.keys(savedWines).length;
-            const badge = document.getElementById('count-notebook');
-            badge.textContent = count;
-            badge.style.display = count > 0 ? 'block' : 'none';
+            const badgeM = document.getElementById('count-notebook');
+            const badgeD = document.getElementById('count-notebook-desktop');
+            badgeM.textContent = count; badgeD.textContent = count;
+            badgeM.style.display = count > 0 ? 'block' : 'none';
+            badgeD.style.display = count > 0 ? 'inline-block' : 'none';
         }
 
         function renderNotebook() {
@@ -222,20 +230,16 @@ document.addEventListener('DOMContentLoaded', () => {
             savedIds.forEach(id => {
                 let foundWine = null; let foundProducer = null;
                 producers.forEach(p => { p.wines.forEach(w => { if(w.id === id) { foundWine = w; foundProducer = p; } }); });
-                if(!foundWine) {
-                    eventData.masterclasses.forEach(mc => { mc.wines.forEach(w => { if(w.id === id) { foundWine = w; foundProducer = {id: w.producerId, name: w.producerName + ' (MC)'}; } }); });
-                }
                 
                 if (foundWine) {
                     const wDiv = document.createElement('div'); wDiv.className = 'wine-item';
-                    let organicHtml = foundWine.organic ? `<svg class="grape-icon"><use href="#icon-leaf"></use></svg>` : '';
                     wDiv.innerHTML = `
                         <button class="heart-btn active" data-wine-id="${foundWine.id}">
                             <svg><use href="#icon-heart-filled"></use></svg>
                         </button>
                         <div class="wine-header" onclick="window.openProducerById('${foundProducer.id}')">
                             <div class="wine-meta" style="color:var(--brand); font-weight:700; margin-bottom:6px; font-size:11px; text-transform:uppercase;">${foundProducer.name}</div>
-                            <div class="wine-name">${foundWine.name} ${organicHtml}</div>
+                            <div class="wine-name">${foundWine.name}</div>
                             <div class="wine-meta">${foundWine.vintage || ''} ${foundWine.type ? '• '+foundWine.type : ''}</div>
                         </div>
                         <textarea class="wine-note-input" data-wine-id="${foundWine.id}" placeholder="Tasting notes...">${wineNotes[foundWine.id] || ''}</textarea>
@@ -292,7 +296,6 @@ document.addEventListener('DOMContentLoaded', () => {
             Object.keys(savedWines).forEach(id => {
                 let foundWine = null; let foundProducer = null;
                 producers.forEach(p => { p.wines.forEach(w => { if(w.id === id) { foundWine = w; foundProducer = p; } }); });
-                if(!foundWine) { eventData.masterclasses.forEach(mc => { mc.wines.forEach(w => { if(w.id === id) { foundWine = w; foundProducer = {name: w.producerName}; } }); }); }
                 if(foundWine) {
                     emailBody += `PRODUCER: ${foundProducer.name}\n`;
                     emailBody += `WINE: ${foundWine.name} (${foundWine.vintage})\n`;
@@ -303,9 +306,24 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = `mailto:?subject=My Tasting Notes - Barolo & Friends&body=${encodeURIComponent(emailBody)}`;
         });
         
+        // PWA logic
+        let deferredPrompt;
+        const pwaBanner = document.getElementById('pwa-banner');
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault(); deferredPrompt = e; pwaBanner.style.display = 'flex';
+        });
+        document.getElementById('pwa-install-btn').addEventListener('click', async () => {
+            pwaBanner.style.display = 'none';
+            if(deferredPrompt) { deferredPrompt.prompt(); deferredPrompt = null; }
+        });
+
+        document.getElementById('app-hero').style.backgroundImage = `url(${eventData.event.coverImage})`;
+        document.getElementById('event-title').textContent = eventData.event.title;
+        document.getElementById('event-date-city').textContent = eventData.event.subtitle;
+        
         updateNotebookCount();
         renderProducers();
     } catch (error) {
-        console.error("Critical error in app.js:", error);
+        console.error("Error in app.js:", error);
     }
 });

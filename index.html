@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Barolo & Friends</title>
-    <link rel="manifest" href="manifest.json?v=4.2">
-    <meta name="theme-color" content="#FAF9F6">
+    <link rel="manifest" href="manifest.json?v=5.0">
+    <meta name="theme-color" content="#FDFBF7">
     <link rel="apple-touch-icon" href="assets/icon-192.png">
-    <link rel="stylesheet" href="style.css?v=4.2">
+    
+    <!-- CSS version 5.0 for Cache Busting -->
+    <link rel="stylesheet" href="style.css?v=5.0">
     
     <svg style="display:none;">
         <symbol id="icon-search" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></symbol>
@@ -27,16 +29,63 @@
         <symbol id="icon-close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></symbol>
     </svg>
 
-    <!-- Top Navigation (Desktop & General Header) -->
-    <header class="app-header">
-        <div class="header-inner">
-            <div class="header-titles">
-                <h1 id="event-title">Barolo & Friends</h1>
-                <div class="subtitle" id="event-date-city">Oslo, August 31st 2026</div>
+    <!-- Error Log for debugging -->
+    <div id="error-log" style="display:none; background: red; color: white; padding: 20px; font-family: monospace;"></div>
+    <script>
+        window.onerror = function(msg, url, lineNo) {
+            var log = document.getElementById('error-log');
+            log.style.display = 'block';
+            log.innerHTML += 'Error: ' + msg + '<br>Line: ' + lineNo;
+            return false;
+        };
+    </script>
+
+    <!-- PWA Install Banner -->
+    <div id="pwa-banner" class="pwa-banner" style="display: none;">
+        <div class="pwa-content">
+            <svg class="pwa-icon"><use href="#icon-install"></use></svg>
+            <div>
+                <strong>Install App</strong>
+                <p>Add Barolo & Friends to your home screen</p>
             </div>
-            <button id="btn-info" class="btn-outline-gold">
+        </div>
+        <button id="pwa-install-btn" class="btn-gold small">Install</button>
+    </div>
+
+    <!-- Desktop Navigation Menu (Visible only on >=768px) -->
+    <nav class="top-nav-desktop">
+        <div class="top-nav-inner">
+            <div class="top-nav-brand">
+                <span style="font-family:'Playfair Display', serif; font-size:18px; font-weight:700; color:var(--brand);">B&F</span>
+            </div>
+            <div class="top-nav-links">
+                <button class="nav-item-desktop active" data-target="section-producers">Producers</button>
+                <button class="nav-item-desktop" data-target="section-masterclasses">Masterclasses</button>
+                <button class="nav-item-desktop" data-target="section-notebook">Notebook <span class="badge" id="count-notebook-desktop" style="display:none;">0</span></button>
+            </div>
+            <button id="btn-info-desktop" class="btn-outline-gold">
                 <svg class="btn-icon"><use href="#icon-info"></use></svg> Event Info
             </button>
+        </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="app-hero" id="app-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-top">
+                <div>
+                    <h1 id="event-title">Barolo & Friends</h1>
+                    <div class="subtitle" id="event-date-city">Oslo, August 31st 2026</div>
+                </div>
+                <button id="btn-info" class="icon-btn-circle mobile-only-info" aria-label="Information">
+                    <svg><use href="#icon-info"></use></svg>
+                </button>
+            </div>
+            <div class="hero-bottom">
+                <p id="welcome-message">Welcome</p>
+                <p class="slogan" id="event-slogan">Piedmont: where wine is history.</p>
+            </div>
         </div>
     </header>
 
@@ -86,7 +135,7 @@
         </section>
     </div>
 
-    <!-- BOTTOM NAVIGATION (MOBILE) -->
+    <!-- BOTTOM NAVIGATION (MOBILE ONLY) -->
     <nav class="bottom-nav">
         <button class="nav-item active" data-target="section-producers">
             <svg class="nav-icon"><use href="#icon-users"></use></svg>
@@ -105,8 +154,7 @@
         </button>
     </nav>
 
-    <!-- Modals (Bottom Sheets) -->
-    
+    <!-- Modals -->
     <!-- Producer Modal -->
     <div class="modal-overlay" id="overlay-producer">
         <div class="bottom-sheet" id="sheet-producer">
@@ -119,12 +167,14 @@
                     <div class="mp-info-right">
                         <div class="mp-table">Table <strong id="mp-desk">0</strong></div>
                         <div class="mp-region" id="mp-region">Region, City</div>
-                        <div class="status-badge" id="mp-status-badge" style="margin-top: 6px;">
+                        <div id="mp-production" style="font-size:13px; color:var(--text-muted); margin-bottom: 8px;"></div>
+                        <div class="status-badge" id="mp-status-badge">
                             <span class="dot"></span> <span id="mp-market-status">Status</span>
                         </div>
                     </div>
                 </div>
                 
+                <!-- Certifications and Icons block -->
                 <div class="eno-icons" id="mp-icons"></div>
 
                 <div class="contact-box">
@@ -133,7 +183,7 @@
                         <strong id="mp-contact">Name, Role</strong>
                     </div>
                     <a id="mp-email" href="#" class="btn-outline-gold">
-                        <svg class="btn-icon"><use href="#icon-mail"></use></svg> Contact
+                        <svg class="btn-icon"><use href="#icon-mail"></use></svg> Email
                     </a>
                 </div>
 
@@ -155,9 +205,9 @@
                     <h3 id="info-title">Barolo & Friends</h3>
                     <p><strong>Date:</strong> August 31st, 2026</p>
                     <p><strong>Venue:</strong> Gamle Logen, Oslo</p>
-                    <p style="margin-top:10px; font-size:13px; color:var(--text-muted);">
-                        13:00–16:00: Walk-Around Tasting (Trade)<br>
-                        16:45–20:00: Walk-Around Tasting (Wine lovers)
+                    <p style="margin-top:12px; font-size:14px; color:var(--text-muted); line-height:1.5;">
+                        <strong>13:00–16:00:</strong> Walk-Around Tasting (Trade only)<br>
+                        <strong>16:45–20:00:</strong> Walk-Around Tasting (Wine lovers)
                     </p>
                 </div>
                 
@@ -184,17 +234,18 @@
                 <button class="close-btn" data-close="overlay-map"><svg><use href="#icon-close"></use></svg></button>
             </div>
             <div class="sheet-body" style="text-align:center;">
-                <img src="assets/floorplan.jpg" style="width:100%; height:auto; border-radius:4px; border:1px solid #eaeaea;">
+                <img src="assets/floorplan.jpg" style="width:100%; height:auto; border-radius:6px; border:1px solid #E8E5E1;">
             </div>
         </div>
     </div>
 
-    <script src="data.js?v=4.2"></script>
-    <script src="app.js?v=4.2"></script>
+    <!-- JS version 5.0 for Cache Busting -->
+    <script src="data.js?v=5.0"></script>
+    <script src="app.js?v=5.0"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js?v=4.2').catch(e => console.log(e));
+                navigator.serviceWorker.register('./sw.js?v=5.0').catch(e => console.log(e));
             });
         }
     </script>

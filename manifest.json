@@ -1,10 +1,10 @@
 {
   "name": "Barolo & Friends",
   "short_name": "B&F Oslo",
-  "start_url": "./index.html?v=4.2",
+  "start_url": "./index.html?v=5.0",
   "display": "standalone",
-  "background_color": "#FAF9F6",
-  "theme_color": "#7A1528",
+  "background_color": "#FDFBF7",
+  "theme_color": "#7A1731",
   "icons": [
     { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
