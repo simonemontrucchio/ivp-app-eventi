@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Barolo & Friends</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Dashboard Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <h1>Barolo & Friends</h1>
+            <p class="subtitle">Oslo, August 31st 2026</p>
+        </div>
+        <div class="header-actions">
+            <button id="btn-info" class="icon-btn" title="Event Info">ℹ️ Info</button>
+            <button id="btn-notebook" class="icon-btn" title="My Notebook">📝 Notebook <span id="notebook-count">0</span></button>
+        </div>
+    </header>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search producer, wine, region...">
+        </div>
+        <div class="quick-filters">
+            <button id="filter-barolo" class="pill-btn">🍷 Only Barolo</button>
+            <button id="filter-bio" class="pill-btn">🍇 Organic / Bio</button>
+            <button id="filter-seeking" class="pill-btn">🤝 Seeking Importer</button>
+        </div>
+        <div class="dropdown-filters">
+            <select id="filter-type">
+                <option value="">All Wine Types</option>
+                <option value="Red">Red Wines</option>
+                <option value="White">White Wines</option>
+                <option value="Sparkling">Sparkling Wines</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Producer List -->
+    <main id="producer-list" class="producer-grid"></main>
+
+    <!-- Modals -->
+    <!-- Producer Detail Modal -->
+    <dialog id="modal-producer" class="modal">
+        <div class="modal-header">
+            <h2 id="mp-name">Producer Name</h2>
+            <button class="close-btn" data-close="modal-producer">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="mp-meta">
+                <span id="mp-desk" class="badge dark">Desk 0</span>
+                <span id="mp-region">Region, City</span>
+            </div>
+            
+            <div class="mp-contact-box">
+                <p><strong>At the desk you will meet:</strong> <br><span id="mp-contact">Name (Role)</span></p>
+                <a id="mp-email" href="#" class="action-btn email-btn">✉️ Contact via Email</a>
+            </div>
+
+            <div class="mp-market">
+                <p><strong>Market Status:</strong> <span id="mp-market-status"></span></p>
+            </div>
+
+            <div class="mp-icons" id="mp-icons">
+                <!-- Enotourism icons injected here -->
+            </div>
+
+            <h3>Wines for tasting</h3>
+            <div id="mp-wines" class="wines-list">
+                <!-- Wines injected here -->
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Notebook Modal -->
+    <dialog id="modal-notebook" class="modal">
+        <div class="modal-header">
+            <h2>My Notebook</h2>
+            <button class="close-btn" data-close="modal-notebook">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p class="help-text">Your favorite wines and tasting notes.</p>
+            <div id="notebook-list" class="wines-list"></div>
+            <button id="export-notes" class="action-btn export-btn" style="margin-top:20px;">📤 Email my notes</button>
+        </div>
+    </dialog>
+
+    <!-- Info Modal -->
+    <dialog id="modal-info" class="modal">
+        <div class="modal-header">
+            <h2>Event Info</h2>
+            <button class="close-btn" data-close="modal-info">&times;</button>
+        </div>
+        <div class="modal-body">
+            <h3>Barolo & Friends Oslo</h3>
+            <p><strong>Date:</strong> August 31st, 2026</p>
+            <p><strong>Venue:</strong> Gamle Logen, Oslo</p>
+            
+            <div class="info-actions">
+                <button class="action-btn outline" onclick="alert('Floor plan map opens here (PDF/JPG)')">🗺️ Floor Plan Map</button>
+                <button class="action-btn outline" onclick="alert('Opening Google Maps...')">📍 Open in Google Maps</button>
+                <button class="action-btn outline" onclick="alert('Event added to calendar!')">📅 Add to Calendar</button>
+            </div>
+            
+            <h3>Program</h3>
+            <ul>
+                <li><strong>13:00-14:00:</strong> Masterclass "The terroirs of Piedmont"</li>
+                <li><strong>13:00-16:00:</strong> Walk-Around Tasting (Trade only)</li>
+                <li><strong>16:45-20:00:</strong> Walk-Around Tasting (Wine lovers)</li>
+            </ul>
+        </div>
+    </dialog>
+
+    <!-- Data and App scripts -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
