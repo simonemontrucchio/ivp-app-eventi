@@ -4,7 +4,8 @@ const eventData = {
     "title": "Barolo & Friends",
     "subtitle": "Oslo, August 31st 2026",
     "welcomeMessage": "Welcome to the 2026 edition",
-    "slogan": "Piedmont: where wine is history and history is wine."
+    "slogan": "Piedmont: where wine is history and history is wine.",
+    "coverImage": "assets/cover.jpg"
   },
   "producers": [
   {
@@ -18,7 +19,7 @@ const eventData = {
     "contactName": "Representative 0",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer0.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -57,7 +58,7 @@ const eventData = {
     "contactName": "Representative 1",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer1.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -96,7 +97,7 @@ const eventData = {
     "contactName": "Representative 2",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer2.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -135,7 +136,7 @@ const eventData = {
     "contactName": "Representative 3",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer3.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -174,7 +175,7 @@ const eventData = {
     "contactName": "Representative 4",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer4.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -213,7 +214,7 @@ const eventData = {
     "contactName": "Representative 5",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer5.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -252,7 +253,7 @@ const eventData = {
     "contactName": "Representative 6",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer6.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -291,7 +292,7 @@ const eventData = {
     "contactName": "Representative 7",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer7.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -330,7 +331,7 @@ const eventData = {
     "contactName": "Representative 8",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer8.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -369,7 +370,7 @@ const eventData = {
     "contactName": "Representative 9",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer9.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -408,7 +409,7 @@ const eventData = {
     "contactName": "Representative 10",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer10.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -447,7 +448,7 @@ const eventData = {
     "contactName": "Representative 11",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer11.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -486,7 +487,7 @@ const eventData = {
     "contactName": "Representative 12",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer12.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -525,7 +526,7 @@ const eventData = {
     "contactName": "Representative 13",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer13.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -564,10 +565,11 @@ const eventData = {
     "contactName": "Representative 14",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer14.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "accommodation",
-      "vineyard"
+      "vineyard",
+      "restaurant"
     ],
     "wines": [
       {
@@ -604,7 +606,7 @@ const eventData = {
     "contactName": "Representative 15",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer15.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -643,7 +645,7 @@ const eventData = {
     "contactName": "Representative 16",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer16.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -682,7 +684,7 @@ const eventData = {
     "contactName": "Representative 17",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer17.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -721,7 +723,7 @@ const eventData = {
     "contactName": "Representative 18",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer18.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -760,7 +762,7 @@ const eventData = {
     "contactName": "Representative 19",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer19.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -799,7 +801,7 @@ const eventData = {
     "contactName": "Representative 20",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer20.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -838,7 +840,7 @@ const eventData = {
     "contactName": "Representative 21",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer21.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -877,7 +879,7 @@ const eventData = {
     "contactName": "Representative 22",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer22.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -916,7 +918,7 @@ const eventData = {
     "contactName": "Representative 23",
     "contactRole": "Owner & Export Manager",
     "email": "info@producer23.com",
-    "logo": "assets/placeholder.png",
+    "logo": "assets/logo_placeholder.png",
     "icons": [
       "vineyard"
     ],
@@ -952,9 +954,19 @@ const eventData = {
       "title": "The terroirs of Piedmont",
       "speaker": "Francesco Marzola",
       "wines": [
-        { "producer": "Malvirà", "name": "Roero Arneis DOCG", "vintage": "2025" },
-        { "producer": "Travaglini", "name": "Gattinara DOCG", "vintage": "2022" },
-        { "producer": "Carlo Revello & Figli", "name": "Barolo DOCG", "vintage": "2022" }
+        { "id": "mc1_w1", "producer": "Malvirà", "name": "Roero Arneis DOCG", "vintage": "2025" },
+        { "id": "mc1_w2", "producer": "Travaglini", "name": "Gattinara DOCG", "vintage": "2022" },
+        { "id": "mc1_w3", "producer": "Carlo Revello & Figli", "name": "Barolo DOCG", "vintage": "2022" }
+      ]
+    },
+    {
+      "id": "mc2",
+      "time": "15:30–16:40",
+      "title": "The Marvelous Landscape of Italian Wines",
+      "speaker": "Isao Miyajima",
+      "wines": [
+        { "id": "mc2_w1", "producer": "La Colombera", "name": "Colli Tortonesi Timorasso Il Montino", "vintage": "2020" },
+        { "id": "mc2_w2", "producer": "Fèlsina", "name": "Toscana Fontalloro IGT", "vintage": "2022" }
       ]
     }
   ]
