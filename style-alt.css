@@ -1,0 +1,286 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+    --brand: #7A1528;
+    --brand-dark: #4A0E18;
+    --accent-gold: #9E804E;
+    --text-main: #1C1C1E;
+    --text-muted: #555555;
+    --text-muted-light: #888888;
+    
+    /* LIQUID GLASS SYSTEM (APPLE LATE 2026) */
+    --glass-bg: rgba(255, 255, 255, 0.40);
+    --glass-bg-heavy: rgba(253, 251, 247, 0.70);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.6);
+    --glass-highlight: inset 0 1px 1px rgba(255, 255, 255, 0.9);
+    --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+    --glass-blur: blur(28px) saturate(160%);
+    
+    --radius: 20px;
+    --radius-lg: 32px;
+    --bottom-nav-height: 96px; /* Spazio extra per il menu fluttuante */
+}
+
+/* Base resets & typography */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+    background-color: #FDFBF7; 
+    color: var(--text-main); 
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+    -webkit-font-smoothing: antialiased; 
+    display: flex; flex-direction: column; min-height: 100vh;
+    padding-bottom: var(--bottom-nav-height);
+    position: relative;
+    z-index: 0;
+}
+.main-content { flex: 1 0 auto; }
+.app-footer { flex-shrink: 0; margin-top: auto; padding: 30px 20px; text-align: center; font-size: 12px; color: var(--text-muted); }
+.app-footer p { text-transform: uppercase; letter-spacing: 1px; font-size: 10px; margin-bottom: 4px;}
+svg { width: 100%; height: 100%; }
+a { text-decoration: none; color: inherit; }
+.is-hidden { display: none !important; }
+.inline { display: inline-block; }
+
+/* 1. MESH GRADIENT BACKGROUND */
+body::before, body::after {
+    content: ''; position: fixed; border-radius: 50%;
+    filter: blur(80px); z-index: -1; pointer-events: none;
+}
+body::before {
+    width: 65vw; height: 65vw; background: rgba(122, 21, 40, 0.20);
+    top: -10vh; left: -20vw;
+    animation: liquidBlob1 15s ease-in-out infinite alternate;
+}
+body::after {
+    width: 55vw; height: 55vw; background: rgba(158, 128, 78, 0.25);
+    bottom: 5vh; right: -10vw;
+    animation: liquidBlob2 20s ease-in-out infinite alternate;
+}
+@keyframes liquidBlob1 { 100% { transform: translate(30vw, 25vh) scale(1.1); } }
+@keyframes liquidBlob2 { 100% { transform: translate(-25vw, -10vh) scale(1.2); } }
+
+/* Animazioni di transizione schede */
+@media (prefers-reduced-motion: no-preference) {
+    .page-section.active { animation: fadeTab 0.4s cubic-bezier(0.1, 0.9, 0.2, 1) forwards; }
+}
+@keyframes fadeTab { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Buttons & Inputs (Frosted) */
+.btn-primary {
+    display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+    background: var(--brand); color: white; padding: 14px;
+    border-radius: var(--radius); font-weight: 500; font-size: 15px; border: none; cursor: pointer; 
+}
+.btn-outline-gold {
+    display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+    background: var(--glass-bg); color: var(--brand-dark); padding: 8px 16px;
+    border-radius: 100px; font-weight: 600; font-size: 13px;
+    border: var(--glass-border); cursor: pointer; box-shadow: var(--glass-shadow);
+    backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+}
+.btn-icon { width: 18px; height: 18px; flex-shrink:0; fill: currentColor; }
+.search-input-wrap { position: relative; margin-bottom: 12px; }
+.search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; fill: var(--text-muted-light); }
+#search-input {
+    width: 100%; padding: 14px 14px 14px 44px; font-size: 15px; font-family: var(--font-body);
+    background: var(--glass-bg); border: var(--glass-border); border-radius: 20px;
+    backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.03), var(--glass-highlight); outline: none;
+}
+#search-input:focus { border-color: var(--accent-gold); background: rgba(255,255,255,0.7); }
+
+.controls-row { display: flex; flex-direction: column; gap: 12px; }
+.quick-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+.filter-btn {
+    padding: 8px 16px; background: var(--glass-bg); border: var(--glass-border);
+    border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--text-main);
+    cursor: pointer; display: flex; align-items: center; gap: 6px; 
+    backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-shadow), var(--glass-highlight); transition: all 0.2s;
+}
+.filter-icon { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0;}
+.filter-btn.active { background: rgba(122, 21, 40, 0.9); color: white; border-color: transparent; }
+
+.sort-actions { display: flex; gap: 8px; align-items: center;}
+.sort-dropdown {
+    padding: 8px 14px; background: var(--glass-bg); border: var(--glass-border);
+    border-radius: 12px; font-size: 13px; color: var(--text-main); cursor: pointer;
+    backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+}
+.btn-reset { padding: 8px 14px; background: transparent; border: none; font-size: 13px; color: var(--text-muted); cursor: pointer; text-decoration: underline; }
+
+/* 2. COVER ESTETICA APPLE */
+.main-cover {
+    width: 100%; height: 160px; background-size: cover; background-position: center;
+    background-color: var(--brand-dark); border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    box-shadow: var(--glass-shadow); position: relative; z-index: 10;
+}
+.page-header-title { padding: 24px 20px 16px; max-width: 1000px; margin: 0 auto; position: relative; z-index: 10;}
+#event-title { font-family: var(--font-heading); font-size: 32px; font-weight: 700; margin-bottom: 4px; color: var(--brand-dark); }
+.subtitle { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--accent-gold); font-weight: 600;}
+.counter-text { font-size: 13px; color: var(--text-muted); margin-top: 12px; font-weight: 500;}
+
+/* 3. FLOATING BOTTOM NAV (Stile Dynamic Island) */
+.bottom-nav {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    width: calc(100% - 40px); max-width: 400px; height: 72px;
+    background: var(--glass-bg-heavy); border: var(--glass-border);
+    border-radius: 100px; display: flex; justify-content: space-around; align-items: center; z-index: 90;
+    backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.15), var(--glass-highlight);
+    padding: 0 10px;
+}
+.nav-item {
+    background: transparent; border: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    color: var(--text-muted-light); font-size: 11px; font-weight: 500; cursor: pointer; flex: 1; height: 100%; transition: color 0.2s;
+}
+.nav-item.active { color: var(--brand); }
+.nav-icon { width: 24px; height: 24px; fill: currentColor; }
+.nav-icon-wrap { position: relative; display: flex; justify-content: center; align-items: center; }
+.nav-item .badge { position: absolute; top: -2px; right: -8px; background: var(--brand); color: white; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 12px; }
+
+/* 4. CARDS IN LIQUID GLASS */
+/* The missing piece: Ensure page section isn't completely hiding children incorrectly */
+.page-section { max-width: 1000px; margin: 0 auto; display: none; width: 100%;}
+.page-section.active { display: block; }
+.filters-wrap { padding: 0 20px 20px; max-width: 1000px; margin: 0 auto; }
+.producer-grid { padding: 0 20px 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+
+.producer-card, .info-card, .mc-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+    border: var(--glass-border); border-radius: var(--radius);
+    padding: 24px; cursor: pointer; display: flex; flex-direction: column;
+    box-shadow: var(--glass-shadow), var(--glass-highlight);
+}
+
+.card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.card-region { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 600; }
+.card-table { font-size: 12px; color: var(--text-muted); font-weight: 500;}
+.card-table strong { font-family: var(--font-heading); font-size: 18px; color: var(--brand); margin-left: 4px; font-weight: 700;}
+
+.card-title-row { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.grid-logo-svg { width: 48px; height: 48px; border-radius: 50%; border: var(--glass-border); flex-shrink: 0; background: rgba(255,255,255,0.7); box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);}
+.card-title { font-family: var(--font-heading); font-size: 22px; font-weight: 600; line-height: 1.2; color: var(--brand-dark); }
+.card-status { margin-bottom: 24px; }
+
+.status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 8px; font-size: 11px; font-weight: 600; }
+.status-badge .dot { width: 6px; height: 6px; border-radius: 50%; }
+.status-badge.seeking { background: var(--badge-seeking); color: var(--badge-seeking-text); }
+.status-badge.seeking .dot { background: currentColor; }
+.status-badge.imported { background: var(--badge-imported); color: var(--badge-imported-text); }
+.status-badge.imported .dot { background: currentColor; }
+
+.card-bottom { border-top: 1px solid rgba(0,0,0,0.05); padding-top: 16px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-muted); }
+.view-link { color: var(--accent-gold); font-weight: 700; text-transform: uppercase; font-size: 10px; letter-spacing: 1px;}
+
+/* Section Headers */
+.section-header { margin: 0 20px 24px; }
+.section-header h2 { font-family: var(--font-heading); font-size: 28px; margin-bottom: 4px; color: var(--brand-dark);}
+.section-header p { font-size: 14px; color: var(--text-muted); }
+
+/* Masterclass Additions */
+.mc-container { display: flex; flex-direction: column; gap: 16px; padding: 0 20px 20px; }
+.mc-header { border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 16px; margin-bottom: 16px;}
+.mc-time { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--brand); margin-bottom: 6px; }
+.mc-title { font-family: var(--font-heading); font-size: 20px; font-weight: 600; margin-bottom: 4px; color: var(--brand-dark);}
+.mc-speaker { font-size: 13px; color: var(--text-muted); margin-bottom: 4px; font-weight: 600;}
+.mc-target { font-size: 12px; font-style: italic; color: var(--text-muted-light);}
+.mc-wine-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); cursor:pointer;}
+.mc-wine-row:last-child { border-bottom: none; }
+.mc-wine-info { flex-grow: 1; padding-right: 16px; }
+.mc-wine-info strong { display: block; font-size: 14px; color: var(--brand-dark); margin-bottom: 4px; font-family: var(--font-heading); font-weight: 600;}
+.mc-wine-info span { font-size: 12px; color: var(--text-muted); display:flex; align-items:center; gap:6px;}
+
+
+/* Notebook additions */
+.wines-list { display: flex; flex-direction: column; gap: 12px; padding: 0 20px 20px;}
+
+/* 5. MODALI LIQUID GLASS */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.25); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    z-index: 1000; display: flex; align-items: flex-end; justify-content: center;
+    opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.modal-overlay.show { opacity: 1; visibility: visible; }
+
+.bottom-sheet {
+    background: var(--glass-bg-heavy);
+    backdrop-filter: blur(40px) saturate(200%); -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: var(--glass-border); border-bottom: none;
+    width: 100%; max-width: 600px; max-height: 92vh; display: flex; flex-direction: column;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0; 
+    box-shadow: 0 -15px 40px rgba(0,0,0,0.15), var(--glass-highlight);
+    transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+.modal-overlay.show .bottom-sheet { transform: translateY(0); }
+.sheet-header { padding: 24px; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
+.sheet-title { font-family: var(--font-heading); font-size: 26px; font-weight: 600; color: var(--brand-dark); }
+.modal-logo { width: 48px; height: 48px; border-radius: 50%; border: var(--glass-border); background: rgba(255,255,255,0.7); box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);}
+.close-btn { background: rgba(0,0,0,0.05); border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; color: var(--text-main); display: flex; justify-content: center; align-items: center; }
+.close-btn svg { width: 20px; height: 20px; fill: currentColor; }
+.sheet-body { padding: 24px; overflow-y: auto; }
+
+/* Dettagli interni della modale (Sub-Glass) */
+.contact-box, .legend-box, .wine-item {
+    background: rgba(255,255,255,0.4); border: var(--glass-border);
+    border-radius: 16px; padding: 16px; margin-bottom: 16px;
+    box-shadow: var(--glass-highlight);
+}
+.wines-header { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 12px; margin-top: 12px; margin-bottom: 16px;}
+.wine-item { position: relative; }
+.heart-btn { position: absolute; right: 12px; top: 12px; background: transparent; border: none; width: 36px; height: 36px; cursor: pointer; color: rgba(0,0,0,0.15); display: flex; justify-content: center; align-items: center; z-index: 10; }
+.heart-btn svg { width: 24px; height: 24px; fill: currentColor; }
+.heart-btn.active { color: var(--brand); }
+.wine-name { font-size: 17px; font-weight: 600; margin-bottom: 6px; line-height:1.3; font-family: var(--font-heading); color: var(--brand-dark); display:flex; align-items:center; flex-wrap:wrap; gap: 6px; padding-right: 40px;}
+.grape-icon { width: 14px; height: 14px; fill: var(--brand); flex-shrink:0; }
+.wine-meta { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 8px;}
+.wine-type-badge { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex-shrink:0; }
+.wine-type-badge.red { background: var(--brand); }
+.wine-type-badge.white { background: var(--accent-gold); }
+.wine-type-badge.sparkling { background: #adb5bd; }
+.wine-type-badge.rose { background: #e5b3b3; }
+
+.wine-note-input {
+    width: 100%; background: rgba(255, 255, 255, 0.6); border: var(--glass-border); border-radius: 12px; padding: 14px; font-size: 14px; resize: vertical; min-height: 70px;
+    font-family: var(--font-body); color: var(--text-main); margin-top: 16px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.03); transition: background 0.2s;
+}
+.wine-note-input:focus { outline: none; border-color: var(--accent-gold); background: rgba(255,255,255,0.9); }
+
+/* Utility */
+.section-header { margin: 0 20px 24px; }
+.section-header h2 { font-family: var(--font-heading); font-size: 28px; margin-bottom: 4px; color: var(--brand-dark);}
+.empty-state { text-align: center; padding: 60px 20px; color: var(--text-muted); display: flex; flex-direction: column; align-items: center;}
+.empty-state svg { width: 56px; height: 56px; fill: rgba(0,0,0,0.1); margin-bottom: 16px; }
+.empty-state h3 { font-family: var(--font-heading); font-size: 22px; color: var(--brand-dark); margin-bottom: 8px; }
+
+/* Desktop Fix */
+@media(min-width: 768px){
+    .bottom-nav { display: none; }
+    .top-nav-desktop { display: flex; background: var(--glass-bg-heavy); backdrop-filter: var(--glass-blur); border-bottom: var(--glass-border); box-shadow: var(--glass-shadow); margin-bottom: 20px;}
+    body { padding-bottom: 20px; }
+}
+
+.mp-table { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;}
+.mp-table strong { font-family: var(--font-heading); font-size: 20px; color: var(--brand); text-transform:none;}
+.mp-region { font-size: 14px; color: var(--text-main); }
+.eno-icon {
+    width: 32px; height: 32px; background: var(--glass-bg); border: var(--glass-border); box-shadow: var(--glass-highlight);
+    color: var(--brand); border-radius: 50%; display: flex; justify-content: center; align-items: center;
+}
+.eno-icon svg { width: 16px; height: 16px; fill: currentColor; }
+.eno-badge {
+    background: var(--glass-bg); border: var(--glass-border); color: var(--brand); border-radius: 4px; padding: 4px 8px;
+    font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.contact-text span { font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px;}
+.contact-text strong { font-size: 15px; color: var(--text-main); }
+.contact-text i { font-size: 14px; color: var(--text-muted); font-style: italic; font-weight: normal; }
+.info-actions { margin-bottom: 20px; }
+.btn-action {
+    display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 14px; background: var(--glass-bg); border: var(--glass-border);
+    border-radius: var(--radius); color: var(--text-main); font-size: 14px; font-weight: 500; margin-bottom: 8px; cursor: pointer; transition: all 0.2s;
+    box-shadow: var(--glass-highlight);
+}
