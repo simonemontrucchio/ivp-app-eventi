@@ -1,11 +1,8 @@
 
 const eventData = {
   "event": {
-    "title": "Barolo & Friends",
-    "subtitle": "Oslo, August 31st 2026",
-    "welcomeMessage": "Welcome to the 2026 edition",
-    "slogan": "Piedmont: where wine is history.",
-    "coverImage": "assets/cover.jpg"
+    "title": "Barolo & Friends", "subtitle": "Oslo, August 31st 2026",
+    "welcomeMessage": "Welcome to the 2026 edition", "slogan": "Piedmont: where wine is history.", "coverImage": "assets/cover.jpg"
   },
   "producers": [
   {
@@ -1612,11 +1609,8 @@ const eventData = {
 ],
   "masterclasses": [
     {
-      "id": "mc1",
-      "time": "13:00–14:00",
-      "title": "The terroirs of Piedmont",
-      "speaker": "Nordic Champion Sommelier Francesco Marzola",
-      "target": "Reserved for professionals, dedicated to the producers of I Vini del Piemonte",
+      "id": "mc1", "time": "13:00–14:00", "title": "The terroirs of Piedmont", "speaker": "Nordic Champion Sommelier Francesco Marzola",
+      "target": "Reserved for professionals",
       "wines": [
         { "id": "p15_w1", "producerId": "p15", "producerName": "Malvirà", "name": "Roero Arneis DOCG", "vintage": "2025", "table": "15", "color": "white", "organic": true },
         { "id": "p23_w1", "producerId": "p23", "producerName": "Travaglini", "name": "Gattinara DOCG", "vintage": "2022", "table": "23", "color": "red", "organic": false },

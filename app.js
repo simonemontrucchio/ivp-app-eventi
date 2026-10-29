@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     try {
         const producers = eventData.producers;
@@ -8,7 +7,25 @@ document.addEventListener('DOMContentLoaded', () => {
         let wineNotes = JSON.parse(localStorage.getItem('bf_wineNotes')) || {};
 
         const grid = document.getElementById('producer-list');
-        const overlayProducer = document.getElementById('overlay-producer');
+        
+        // Algoritmo di tolleranza errori (Levenshtein Distance)
+        function getTypoDistance(a, b) {
+            if(a.length === 0) return b.length;
+            if(b.length === 0) return a.length;
+            let matrix = [];
+            for(let i = 0; i <= b.length; i++) { matrix[i] = [i]; }
+            for(let j = 0; j <= a.length; j++) { matrix[0][j] = j; }
+            for(let i = 1; i <= b.length; i++) {
+                for(let j = 1; j <= a.length; j++) {
+                    if(b.charAt(i-1) === a.charAt(j-1)) {
+                        matrix[i][j] = matrix[i-1][j-1];
+                    } else {
+                        matrix[i][j] = Math.min(matrix[i-1][j-1] + 1, Math.min(matrix[i][j-1] + 1, matrix[i-1][j] + 1));
+                    }
+                }
+            }
+            return matrix[b.length][a.length];
+        }
         
         // Navigation 
         const navItemsMobile = document.querySelectorAll('.bottom-nav .nav-item');
@@ -33,29 +50,50 @@ document.addEventListener('DOMContentLoaded', () => {
         navItemsMobile.forEach(item => item.addEventListener('click', () => switchTab(item.getAttribute('data-target'))));
         navItemsDesktop.forEach(item => item.addEventListener('click', () => switchTab(item.getAttribute('data-target'))));
 
-        // Modals
+        // HISTORY API - Modalità Mobile Back Button
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('show');
+            history.pushState({ modalOpen: true }, '');
+        }
+
+        function closeAllModals() {
+            document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('show'));
+        }
+
+        window.addEventListener('popstate', (e) => {
+            closeAllModals();
+        });
+
+        // UI buttons to open Modals
         const btnInfoMobile = document.getElementById('btn-info-mobile');
         const btnInfoDesktop = document.getElementById('btn-info-desktop');
-        if(btnInfoMobile) btnInfoMobile.addEventListener('click', () => document.getElementById('overlay-info').classList.add('show'));
-        if(btnInfoDesktop) btnInfoDesktop.addEventListener('click', () => document.getElementById('overlay-info').classList.add('show'));
+        if(btnInfoMobile) btnInfoMobile.addEventListener('click', () => openModal('overlay-info'));
+        if(btnInfoDesktop) btnInfoDesktop.addEventListener('click', () => openModal('overlay-info'));
         
         document.getElementById('btn-open-map').addEventListener('click', () => {
             document.getElementById('overlay-info').classList.remove('show');
             document.getElementById('overlay-map').classList.add('show');
+            history.replaceState({ modalOpen: true }, '');
         });
 
         document.querySelectorAll('.close-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => document.getElementById(e.currentTarget.dataset.close).classList.remove('show'));
+            btn.addEventListener('click', () => {
+                if (history.state && history.state.modalOpen) { history.back(); } 
+                else { closeAllModals(); }
+            });
         });
         document.querySelectorAll('.modal-overlay').forEach(overlay => {
             overlay.addEventListener('click', (e) => {
-                if(e.target === overlay) overlay.classList.remove('show');
+                if(e.target === overlay) {
+                    if (history.state && history.state.modalOpen) { history.back(); } 
+                    else { closeAllModals(); }
+                }
             });
         });
 
         // Search & Filters
         document.getElementById('search-input').addEventListener('input', (e) => { 
-            activeFilters.text = e.target.value.toLowerCase(); 
+            activeFilters.text = e.target.value.toLowerCase().trim(); 
             renderProducers(); 
         });
         ['barolo', 'bio', 'seeking'].forEach(f => {
@@ -90,7 +128,77 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.openProducerById = function(id) {
             const p = producers.find(x => x.id === id);
-            if(p) openProducerModal(p);
+            if(p) {
+                document.getElementById('mp-name').textContent = p.name;
+                document.getElementById('mp-desk').textContent = p.desk;
+                document.getElementById('mp-region').textContent = `${p.region} • ${p.city}`;
+                document.getElementById('mp-contact-name').textContent = p.contactName;
+                document.getElementById('mp-contact-role').textContent = p.contactRole;
+                
+                const prodEl = document.getElementById('mp-production');
+                if (p.production) {
+                    prodEl.textContent = `Production: ${p.production} bottles`;
+                    prodEl.style.display = 'block';
+                } else {
+                    prodEl.style.display = 'none';
+                }
+                
+                const emailBtn = document.getElementById('mp-email');
+                const websiteEl = document.getElementById('mp-website');
+                if(p.email) {
+                    emailBtn.href = `mailto:${p.email}`;
+                    emailBtn.style.display = 'inline-flex';
+                } else { emailBtn.style.display = 'none'; }
+                
+                if(p.website) {
+                    websiteEl.href = `https://${p.website}`;
+                    websiteEl.textContent = p.website;
+                    websiteEl.style.display = 'block';
+                } else { websiteEl.style.display = 'none'; }
+                
+                let marketText = p.market === 'seeking' ? 'Searching for importer' : `Imported by: ${p.importer}`;
+                const badgeEl = document.getElementById('mp-status-badge');
+                badgeEl.className = `status-badge ${p.market === 'seeking' ? 'seeking' : 'imported'}`;
+                document.getElementById('mp-market-status').textContent = marketText;
+
+                const badgesContainer = document.getElementById('mp-badges');
+                const iconsContainer = document.getElementById('mp-icons-right');
+                
+                badgesContainer.innerHTML = (p.certifications || []).map(c => `<div class="eno-badge">${c}</div>`).join('');
+                
+                const iconMap = {
+                    'accommodation': '<svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>',
+                    'restaurant': '<svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>',
+                    'vineyard': '<svg viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg>',
+                    'pool': '<svg viewBox="0 0 24 24"><path d="M22 21H2v-2h20v2zm-2.03-3H4.03c1.37-1.16 2.37-2.7 2.76-4.4.15-.65.22-1.31.21-1.95 0-.08.01-.16.02-.23.1-1.63 1.45-2.92 3.1-2.92 1.66 0 3.01 1.31 3.1 2.94.01.07.02.14.02.22-.01.64.06 1.3.21 1.95.39 1.7 1.39 3.24 2.76 4.39zM8.13 10.37c-.77.16-1.39.73-1.64 1.48-.12.38-.17.77-.16 1.16-.01.76-.23 1.5-.64 2.13.98-1 1.62-2.3 1.79-3.7.13-.19.32-.34.54-.42.23-.08.47-.07.7-.01.02-.01.04-.02.05-.03-.21-.19-.44-.39-.64-.61zm7.74 0c-.21.22-.44.42-.64.61.02.01.03.02.05.03.22-.06.46-.07.7-.01.22.07.41.22.54.42.17 1.4.81 2.7 1.79 3.7-.41-.63-.63-1.37-.64-2.13.01-.39-.04-.78-.16-1.16-.25-.75-.87-1.32-1.64-1.48zM12 4.5c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5zm0 3c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5z"/></svg>'
+                };
+                iconsContainer.innerHTML = (p.icons || []).map(icon => `<div class="eno-icon" title="${icon}">${iconMap[icon] || ''}</div>`).join('');
+
+                const winesContainer = document.getElementById('mp-wines');
+                winesContainer.innerHTML = p.wines.map(w => {
+                    let isSaved = !!savedWines[w.id];
+                    let organicHtml = w.organic ? `<svg class="grape-icon inline"><use href="#icon-grape"></use></svg>` : '';
+                    let vintageText = w.vintage !== 'NV' ? ` ${w.vintage}` : '';
+                    
+                    return `
+                    <div class="wine-item">
+                        <button class="heart-btn ${isSaved ? 'active' : ''}" data-wine-id="${w.id}">
+                            <svg><use href="${isSaved ? '#icon-heart-filled' : '#icon-heart'}"></use></svg>
+                        </button>
+                        <div class="wine-header">
+                            <div class="wine-name">
+                                ${w.name}${vintageText} 
+                                ${organicHtml}
+                            </div>
+                            <div class="wine-meta"><span class="wine-type-badge ${w.color || 'red'}"></span> ${w.type}</div>
+                        </div>
+                        <textarea class="wine-note-input" data-wine-id="${w.id}" placeholder="Tasting notes...">${wineNotes[w.id] || ''}</textarea>
+                    </div>`;
+                }).join('');
+                
+                attachWineListeners(winesContainer);
+                openModal('overlay-producer');
+            }
         };
 
         function renderProducers() {
@@ -98,9 +206,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 let matchText = true;
                 if (activeFilters.text) {
                     const searchStr = `${p.name} ${p.region} ${p.city} Table ${p.desk} ${p.wines.map(w=>w.name + " " + w.vintage + " " + w.type).join(' ')}`.toLowerCase();
-                    const words = activeFilters.text.split(' ');
-                    matchText = words.every(w => searchStr.includes(w));
+                    const queryWords = activeFilters.text.split(/\s+/);
+                    const targetWords = searchStr.split(/\s+/);
+                    
+                    // Controlla che ogni parola cercata sia presente o abbia al massimo 1/2 errori di battitura
+                    matchText = queryWords.every(qw => {
+                        return targetWords.some(tw => {
+                            if (tw.includes(qw)) return true;
+                            if (qw.length > 3 && Math.abs(tw.length - qw.length) <= 2) {
+                                return getTypoDistance(qw, tw) <= (qw.length <= 5 ? 1 : 2);
+                            }
+                            return false;
+                        });
+                    });
                 }
+                
                 let matchSeeking = activeFilters.seeking ? (p.market === 'seeking') : true;
                 let matchBarolo = activeFilters.barolo ? p.wines.some(w => w.name.toLowerCase().includes('barolo')) : true;
                 let matchBio = activeFilters.bio ? (p.certifications.includes('Organic winery') || p.certifications.includes('Green Experience') || p.wines.some(w => w.organic)) : true;
@@ -132,12 +252,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     ? `<span class="status-badge seeking"><span class="dot"></span>Seeking importer</span>` 
                     : `<span class="status-badge imported"><span class="dot"></span>Importer: ${p.importer}</span>`;
                 return `
-                <div class="producer-card" onclick="openProducerById('${p.id}')">
+                <div class="producer-card" onclick="window.openProducerById('${p.id}')">
                     <div class="card-top">
                         <span class="card-region">${p.region}, ${p.city}</span>
                         <span class="card-table">Table <strong>${p.desk}</strong></span>
                     </div>
-                    <h3 class="card-title">${p.name}</h3>
+                    <div class="card-title-row">
+                        <svg viewBox="0 0 100 100" class="grid-logo-svg">
+                            <rect width="100" height="100" fill="#f5f5f5"/>
+                            <text x="50" y="55" font-family="sans-serif" font-size="24" fill="#9E804E" text-anchor="middle" font-weight="bold">${p.name.charAt(0)}</text>
+                        </svg>
+                        <h3 class="card-title">${p.name}</h3>
+                    </div>
                     <div class="card-status">${marketBadge}</div>
                     <div class="card-bottom">
                         <span>${p.wines.length} wines</span>
@@ -145,83 +271,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>`;
             }).join('');
-        }
-
-        function getEnotourismIcon(type) {
-            const map = {
-                'accommodation': '<svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>',
-                'restaurant': '<svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>',
-                'vineyard': '<svg viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg>',
-                'pool': '<svg viewBox="0 0 24 24"><path d="M22 21H2v-2h20v2zm-2.03-3H4.03c1.37-1.16 2.37-2.7 2.76-4.4.15-.65.22-1.31.21-1.95 0-.08.01-.16.02-.23.1-1.63 1.45-2.92 3.1-2.92 1.66 0 3.01 1.31 3.1 2.94.01.07.02.14.02.22-.01.64.06 1.3.21 1.95.39 1.7 1.39 3.24 2.76 4.39zM8.13 10.37c-.77.16-1.39.73-1.64 1.48-.12.38-.17.77-.16 1.16-.01.76-.23 1.5-.64 2.13.98-1 1.62-2.3 1.79-3.7.13-.19.32-.34.54-.42.23-.08.47-.07.7-.01.02-.01.04-.02.05-.03-.21-.19-.44-.39-.64-.61zm7.74 0c-.21.22-.44.42-.64.61.02.01.03.02.05.03.22-.06.46-.07.7-.01.22.07.41.22.54.42.17 1.4.81 2.7 1.79 3.7-.41-.63-.63-1.37-.64-2.13.01-.39-.04-.78-.16-1.16-.25-.75-.87-1.32-1.64-1.48zM12 4.5c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5zm0 3c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5z"/></svg>'
-            };
-            return map[type] || '';
-        }
-
-        function openProducerModal(p) {
-            document.getElementById('mp-name').textContent = p.name;
-            document.getElementById('mp-desk').textContent = p.desk;
-            document.getElementById('mp-region').textContent = `${p.region} • ${p.city}`;
-            
-            document.getElementById('mp-contact-name').textContent = p.contactName;
-            document.getElementById('mp-contact-role').textContent = p.contactRole;
-            
-            const prodEl = document.getElementById('mp-production');
-            if (p.production) {
-                prodEl.textContent = `Production: ${p.production} bottles`;
-                prodEl.style.display = 'block';
-            } else {
-                prodEl.style.display = 'none';
-            }
-            
-            const emailBtn = document.getElementById('mp-email');
-            const websiteEl = document.getElementById('mp-website');
-            if(p.email) {
-                emailBtn.href = `mailto:${p.email}`;
-                emailBtn.style.display = 'inline-flex';
-            } else { emailBtn.style.display = 'none'; }
-            
-            if(p.website) {
-                websiteEl.href = `https://${p.website}`;
-                websiteEl.textContent = p.website;
-                websiteEl.style.display = 'block';
-            } else { websiteEl.style.display = 'none'; }
-            
-            let marketText = p.market === 'seeking' ? 'Searching for importer' : `Imported by: ${p.importer}`;
-            const badgeEl = document.getElementById('mp-status-badge');
-            badgeEl.className = `status-badge ${p.market === 'seeking' ? 'seeking' : 'imported'}`;
-            document.getElementById('mp-market-status').textContent = marketText;
-
-            // Certifications & Enotourism Icons (Top Right)
-            const badgesContainer = document.getElementById('mp-badges');
-            const iconsContainer = document.getElementById('mp-icons-right');
-            
-            badgesContainer.innerHTML = (p.certifications || []).map(c => `<div class="eno-badge">${c}</div>`).join('');
-            iconsContainer.innerHTML = (p.icons || []).map(icon => `<div class="eno-icon" title="${icon}">${getEnotourismIcon(icon)}</div>`).join('');
-
-            const winesContainer = document.getElementById('mp-wines');
-            winesContainer.innerHTML = p.wines.map(w => {
-                let isSaved = !!savedWines[w.id];
-                let organicHtml = w.organic ? `<svg class="grape-icon inline"><use href="#icon-grape"></use></svg>` : '';
-                let vintageText = w.vintage !== 'NV' ? ` ${w.vintage}` : '';
-                
-                return `
-                <div class="wine-item">
-                    <button class="heart-btn ${isSaved ? 'active' : ''}" data-wine-id="${w.id}">
-                        <svg><use href="${isSaved ? '#icon-heart-filled' : '#icon-heart'}"></use></svg>
-                    </button>
-                    <div class="wine-header">
-                        <div class="wine-name">
-                            ${w.name}${vintageText} 
-                            ${organicHtml}
-                        </div>
-                        <div class="wine-meta"><span class="wine-type-badge ${w.color || 'red'}"></span> ${w.type}</div>
-                    </div>
-                    <textarea class="wine-note-input" data-wine-id="${w.id}" placeholder="Tasting notes...">${wineNotes[w.id] || ''}</textarea>
-                </div>`;
-            }).join('');
-            
-            attachWineListeners(winesContainer);
-            overlayProducer.classList.add('show');
         }
 
         function attachWineListeners(container) {
@@ -403,7 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pwaBanner.style.display = 'none';
         });
 
-        // Init Setup - Force exact initial render
+        // Init Setup
         updateNotebookCount();
         renderProducers();
         renderMasterclasses();

@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Barolo & Friends</title>
-    <link rel="manifest" href="manifest.json?v=4.6">
-    <meta name="theme-color" content="#FDFBF7">
+    <link rel="manifest" href="manifest.json?v=5.0">
+    <meta name="theme-color" content="#7A1528">
     <link rel="apple-touch-icon" href="assets/icon-192.png">
     
-    <link rel="stylesheet" href="style.css?v=4.6">
+    <link rel="stylesheet" href="style.css?v=5.0">
     
     <svg style="display:none;">
         <symbol id="icon-search" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></symbol>
@@ -36,7 +36,6 @@
         <symbol id="icon-arrow-up" viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></symbol>
     </svg>
 
-    <!-- Top Toast for PWA -->
     <div id="pwa-banner" class="pwa-toast" style="display:none;">
         <div class="pwa-content">
             <svg class="pwa-icon"><use href="#icon-install"></use></svg>
@@ -51,7 +50,6 @@
         </div>
     </div>
 
-    <!-- Top Navigation Desktop -->
     <nav class="top-nav-desktop">
         <div class="top-nav-inner">
             <div class="top-nav-brand">
@@ -66,13 +64,9 @@
         </div>
     </nav>
 
-    <!-- Content Sections -->
     <div class="main-content">
-        
-        <!-- Cover Image Top -->
         <div class="main-cover" style="background-image: url('assets/cover.jpg')"></div>
 
-        <!-- Main Event Header -->
         <header class="page-header-title">
             <div style="display:flex; justify-content:space-between; align-items:flex-end;">
                 <div>
@@ -84,7 +78,6 @@
             <div class="counter-text" id="main-counter">24 producers &bull; 132 wines</div>
         </header>
 
-        <!-- PRODUCERS SECTION -->
         <section id="section-producers" class="page-section active">
             <div class="filters-wrap">
                 <div class="search-input-wrap">
@@ -118,7 +111,6 @@
             <main id="producer-list" class="producer-grid"></main>
         </section>
 
-        <!-- MASTERCLASSES SECTION -->
         <section id="section-masterclasses" class="page-section">
             <div class="section-header">
                 <h2>Masterclass Programme</h2>
@@ -127,7 +119,6 @@
             <div id="masterclass-list" class="mc-container"></div>
         </section>
 
-        <!-- NOTEBOOK SECTION -->
         <section id="section-notebook" class="page-section">
             <div class="section-header">
                 <h2>My Tasting Notes</h2>
@@ -143,7 +134,6 @@
         </section>
     </div>
         
-    <!-- Footer for Partners -->
     <footer class="app-footer">
         <div class="footer-content">
             <p>Organized by</p>
@@ -152,7 +142,6 @@
         </div>
     </footer>
 
-    <!-- BOTTOM NAVIGATION (MOBILE) -->
     <nav class="bottom-nav">
         <button class="nav-item active" data-target="section-producers">
             <svg class="nav-icon"><use href="#icon-users"></use></svg>
@@ -171,17 +160,22 @@
         </button>
     </nav>
     
-    <!-- BACK TO TOP -->
     <button id="back-to-top" class="back-to-top is-hidden">
         <svg><use href="#icon-arrow-up"></use></svg>
     </button>
 
-    <!-- Modals -->
     <!-- Producer Modal -->
     <div class="modal-overlay" id="overlay-producer">
         <div class="bottom-sheet" id="sheet-producer">
             <div class="sheet-header">
-                <h2 id="mp-name" class="sheet-title">Producer Name</h2>
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <!-- SVG Placeholder inline for guaranteed visibility -->
+                    <svg viewBox="0 0 100 100" class="modal-logo" id="mp-logo">
+                        <rect width="100" height="100" fill="#f5f5f5"/>
+                        <text x="50" y="55" font-family="sans-serif" font-size="20" fill="#9E804E" text-anchor="middle">LOGO</text>
+                    </svg>
+                    <h2 id="mp-name" class="sheet-title">Producer Name</h2>
+                </div>
                 <button class="close-btn" data-close="overlay-producer"><svg><use href="#icon-close"></use></svg></button>
             </div>
             <div class="sheet-body">
@@ -299,13 +293,13 @@
         </div>
     </div>
 
-    <!-- JS version 4.6 -->
-    <script src="data.js?v=4.6"></script>
-    <script src="app.js?v=4.6"></script>
+ 
+    <script src="data.js?v=5.0"></script>
+    <script src="app.js?v=5.0"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js?v=4.6').catch(e => console.log(e));
+                navigator.serviceWorker.register('./sw.js?v=5.0').catch(e => console.log(e));
             });
         }
     </script>

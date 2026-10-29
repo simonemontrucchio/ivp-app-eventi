@@ -40,6 +40,12 @@ a { text-decoration: none; color: inherit; }
 .is-hidden { display: none !important; }
 .inline { display: inline-block; }
 
+/* Animations handling (Performance + prefers-reduced-motion) */
+@media (prefers-reduced-motion: no-preference) {
+    .page-section.active { animation: fadeTab 0.3s ease-out forwards; }
+}
+@keyframes fadeTab { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
 /* Buttons */
 .btn-primary {
     display: inline-flex; justify-content: center; align-items: center; gap: 8px;
@@ -133,7 +139,7 @@ a { text-decoration: none; color: inherit; }
     .bottom-nav { display: none; }
     .top-nav-desktop { display: block; }
     .mobile-only { display: none !important; }
-    body { padding-bottom: 0px; } /* Footer handles spacing */
+    body { padding-bottom: 0px; }
     .back-to-top { bottom: 30px; }
 }
 
@@ -172,8 +178,7 @@ a { text-decoration: none; color: inherit; }
 
 /* Grid & Cards */
 .page-section { max-width: 1000px; margin: 0 auto; display: none; width: 100%;}
-.page-section.active { display: block; animation: fadeIn 0.2s ease; }
-@keyframes fadeIn { from { opacity: 0;} to { opacity: 1;} }
+.page-section.active { display: block; }
 
 .producer-grid { padding: 0 20px 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
 
@@ -188,7 +193,12 @@ a { text-decoration: none; color: inherit; }
 .card-table { font-size: 12px; color: var(--text-muted); font-weight: 500;}
 .card-table strong { font-family: var(--font-heading); font-size: 16px; color: var(--brand); margin-left: 4px; font-weight: 700;}
 
-.card-title { font-family: var(--font-heading); font-size: 24px; font-weight: 600; line-height: 1.2; color: var(--brand-dark); margin-bottom: 12px; flex-grow: 1;}
+.card-title-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+
+/* In-grid pure SVG logo instead of missing img file */
+.grid-logo-svg { width: 44px; height: 44px; border-radius: 50%; object-fit: contain; border: 1px solid var(--border); flex-shrink: 0; background: #fff;}
+
+.card-title { font-family: var(--font-heading); font-size: 22px; font-weight: 600; line-height: 1.2; color: var(--brand-dark); }
 .card-status { margin-bottom: 20px; }
 
 .status-badge {
@@ -212,28 +222,34 @@ a { text-decoration: none; color: inherit; }
 .section-header p { font-size: 14px; color: var(--text-muted); }
 
 /* Bottom Sheets (Modals) */
+/* FIX: Display flex is always on, visibility and opacity handle the hiding to allow CSS transitions */
 .modal-overlay {
     position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(34,34,34,0.6); backdrop-filter: blur(4px); z-index: 1000; display: none; align-items: flex-end; justify-content: center;
-    opacity: 0; transition: opacity 0.2s;
+    background: rgba(34,34,34,0.6); backdrop-filter: blur(4px); z-index: 1000;
+    display: flex; align-items: flex-end; justify-content: center;
+    opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
 }
-.modal-overlay.show { display: flex; opacity: 1; }
+.modal-overlay.show { opacity: 1; visibility: visible; }
+
 .bottom-sheet {
     background: var(--bg-page); width: 100%; max-width: 600px;
     border-radius: 12px 12px 0 0; box-shadow: var(--shadow-modal); max-height: 90vh; display: flex; flex-direction: column;
     transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
+.modal-overlay.show .bottom-sheet { transform: translateY(0); }
+
 @media(min-width:768px){
     .modal-overlay { align-items: center; }
-    .bottom-sheet { border-radius: 12px; max-height: 85vh; transform: scale(0.95); opacity: 0;}
+    .bottom-sheet { border-radius: 12px; max-height: 85vh; transform: scale(0.95); opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease;}
     .modal-overlay.show .bottom-sheet { transform: scale(1); opacity: 1;}
 }
-.modal-overlay.show .bottom-sheet { transform: translateY(0); }
 
 .sheet-header {
     padding: 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); border-radius: 12px 12px 0 0;
 }
 .sheet-title { font-family: var(--font-heading); font-size: 24px; font-weight: 600; color: var(--brand-dark); }
+.modal-logo { width: 44px; height: 44px; border-radius: 50%; object-fit: contain; border: 1px solid var(--border); background: #fff;}
+
 .close-btn { background: transparent; border: none; width: 32px; height: 32px; cursor: pointer; color: var(--text-muted); display: flex; justify-content: center; align-items: center; }
 .close-btn svg { width: 24px; height: 24px; fill: currentColor; }
 .sheet-body { padding: 20px; overflow-y: auto; }
@@ -244,7 +260,7 @@ a { text-decoration: none; color: inherit; }
 .mp-table strong { font-family: var(--font-heading); font-size: 20px; color: var(--brand); text-transform:none;}
 .mp-region { font-size: 14px; color: var(--text-main); }
 
-#mp-icons-right { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+#mp-icons-right { display: flex; gap: 8px; flex-wrap: wrap; }
 .eno-icon {
     width: 32px; height: 32px; background: var(--bg-card); border: 1px solid var(--border);
     color: var(--brand); border-radius: 50%; display: flex; justify-content: center; align-items: center;
